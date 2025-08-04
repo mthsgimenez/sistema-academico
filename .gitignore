@@ -1,5 +1,5 @@
-__history/
-Win32/
-*.identcache
-*.local
-*.res
+src/__history/
+src/Win32/
+src/*.identcache
+src/*.local
+src/*.res
