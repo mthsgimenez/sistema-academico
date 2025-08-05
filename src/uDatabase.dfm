@@ -1,4 +1,4 @@
-object DataModule1: TDataModule1
+object Database: TDatabase
   Height = 480
   Width = 640
   object FDConnection: TFDConnection
@@ -8,7 +8,6 @@ object DataModule1: TDataModule1
       'Password=root'
       'Server=127.0.0.1'
       'DriverID=PG')
-    Connected = True
     Left = 80
     Top = 240
   end
@@ -17,7 +16,7 @@ object DataModule1: TDataModule1
     Left = 264
     Top = 248
   end
-  object FDQueryEstudantes: TFDQuery
+  object FDQuery: TFDQuery
     Connection = FDConnection
     SQL.Strings = (
       'SELECT * FROM estudantes;')

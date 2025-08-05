@@ -9,7 +9,6 @@ uses
 type
   TformMain = class(TForm)
     Button1: TButton;
-    ListBox1: TListBox;
     procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
@@ -24,20 +23,15 @@ implementation
 
 {$R *.dfm}
 
-uses uDatabase;
+uses uFormEstudante;
 
 procedure TformMain.Button1Click(Sender: TObject);
 var
-  Query: TFDQuery;
+  formEstudante: TFormEstudante;
 begin
-  Query := uDatabase.DataModule1.FDQueryEstudantes;
-
-  Query.Open;
-
-  while not uDatabase.DataModule1.FDQueryEstudantes.Eof do begin
-    ListBox1.Items.Add(uDatabase.DataModule1.FDQueryEstudantes.FieldByName('nome').AsString);
-    uDatabase.DataModule1.FDQueryEstudantes.Next;
-  end;
+  formEstudante := TFormEstudante.Create(nil);
+  formEstudante.ShowModal;
+  formEstudante.Free;
 end;
 
 end.

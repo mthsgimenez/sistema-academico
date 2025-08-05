@@ -11,10 +11,10 @@ uses
   FireDAC.Comp.DataSet;
 
 type
-  TDataModule1 = class(TDataModule)
+  TDatabase = class(TDataModule)
     FDConnection: TFDConnection;
     FDPhysPgDriverLink: TFDPhysPgDriverLink;
-    FDQueryEstudantes: TFDQuery;
+    FDQuery: TFDQuery;
   private
     { Private declarations }
   public
@@ -22,7 +22,7 @@ type
   end;
 
 var
-  DataModule1: TDataModule1;
+  Database: TDatabase;
 
 implementation
 
