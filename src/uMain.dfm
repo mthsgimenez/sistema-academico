@@ -24,8 +24,6 @@ object formMain: TformMain
     Margins.Bottom = 0
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = -5
-    ExplicitTop = -5
     object pageMain: TPageControl
       AlignWithMargins = True
       Left = 1
@@ -58,7 +56,7 @@ object formMain: TformMain
           TabOrder = 1
         end
         object listEstudantes: TListBox
-          Left = 464
+          Left = 184
           Top = 24
           Width = 121
           Height = 97
@@ -66,13 +64,37 @@ object formMain: TformMain
           TabOrder = 2
         end
         object buttonEstudanteAtualizar: TButton
-          Left = 464
+          Left = 184
           Top = 136
           Width = 121
           Height = 25
           Caption = 'Atualizar'
           TabOrder = 3
           OnClick = buttonEstudanteAtualizarClick
+        end
+        object Edit1: TEdit
+          Left = 336
+          Top = 24
+          Width = 121
+          Height = 23
+          TabOrder = 4
+        end
+        object buttonEstudanteDeletar: TButton
+          Left = 336
+          Top = 64
+          Width = 75
+          Height = 25
+          Caption = 'Deletar'
+          TabOrder = 5
+          OnClick = buttonEstudanteDeletarClick
+        end
+        object Button2: TButton
+          Left = 424
+          Top = 64
+          Width = 75
+          Height = 25
+          Caption = 'Button2'
+          TabOrder = 6
         end
       end
       object tabProfessor: TTabSheet

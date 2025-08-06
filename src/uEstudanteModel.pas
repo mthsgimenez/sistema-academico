@@ -7,10 +7,13 @@ uses uDatabase, uEstudante, System.SysUtils, System.Generics.Collections;
 type TEstudanteModel = class
   private
     Database: TDatabase;
+    Estudantes: TObjectList<TEstudante>;
   public
     constructor Create(aDatabase: TDatabase);
     procedure Insert(aEstudante: TEstudante);
     function GetEstudantes: TObjectList<TEstudante>;
+    procedure Delete(aEstudante: TEstudante);
+    function GetEstudante(aId: Integer): TEstudante;
 end;
 
 implementation
@@ -18,15 +21,11 @@ implementation
 { TEstudanteModel }
 
 constructor TEstudanteModel.Create(aDatabase: TDatabase);
-begin
-  Self.Database := aDatabase;
-end;
-
-function TEstudanteModel.GetEstudantes: TObjectList<TEstudante>;
-var lista: TObjectList<TEstudante>;
 var estudante: TEstudante;
 begin
-  lista := TObjectList<TEstudante>.Create;
+  Self.Database := aDatabase;
+
+  Self.Estudantes := TObjectList<TEstudante>.Create;
   Self.Database.FDQuery.SQL.Text := 'SELECT * FROM estudantes;';
   Self.Database.FDQuery.Open;
 
@@ -35,18 +34,50 @@ begin
     estudante.SetId(Self.Database.FDQuery.FieldByName('id').AsInteger);
     estudante.SetNome(Self.Database.FDQuery.FieldByName('nome').AsString);
 
-    lista.Add(estudante);
+    Self.Estudantes.Add(estudante);
     Self.Database.FDQuery.Next;
   end;
   Self.Database.FDQuery.Close;
+end;
 
-  Result := lista;
+procedure TEstudanteModel.Delete(aEstudante: TEstudante);
+begin
+  Self.Database.FDQuery.SQL.Text := 'DELETE FROM estudantes WHERE id=' + aEstudante.GetId.ToString + ';';
+  Self.Database.FDQuery.ExecSQL;
+  Self.Database.FDQuery.Close;
+  Self.Estudantes.Remove(aEstudante);
+end;
+
+function TEstudanteModel.GetEstudante(aId: Integer): TEstudante;
+begin
+{
+  for var estudante in Self.Estudantes do begin
+    if estudante.GetId = aId then begin
+      Result := estudante;
+      exit;
+    end;
+  end;
+
+  raise Exception.Create('Estudante com id: ' + aId.ToString + 'não foi encontrado');
+}
+  Result := Self.Estudantes[aId];
+end;
+
+function TEstudanteModel.GetEstudantes: TObjectList<TEstudante>;
+begin
+  Result := Self.Estudantes;
 end;
 
 procedure TEstudanteModel.Insert(aEstudante: TEstudante);
+var id: Integer;
 begin
-  Self.Database.FDQuery.SQL.Text := 'INSERT INTO estudantes (nome) VALUES (' + QuotedStr(aEstudante.GetNome) + ');';
-  Self.Database.FDQuery.ExecSQL;
+  Self.Estudantes.Add(aEstudante);
+  Self.Database.FDQuery.SQL.Text := 'INSERT INTO estudantes (nome) VALUES (' + QuotedStr(aEstudante.GetNome) + ') RETURNING id;';
+  Self.Database.FDQuery.Open;
+
+  id := Self.Database.FDQuery.FieldByName('id').AsInteger;
+  aEstudante.SetId(id);
+
   Self.Database.FDQuery.Close;
 end;
 

@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, FireDAC.Comp.Client,
-  Vcl.ComCtrls, Vcl.ExtCtrls, System.Generics.Collections, uDatabase, uEstudanteModel, uEstudante;
+  Vcl.ComCtrls, Vcl.ExtCtrls, System.Generics.Collections, uDatabase, uEstudanteModel, uEstudante,
+  Vcl.Grids;
 
 type
   TformMain = class(TForm)
@@ -17,9 +18,13 @@ type
     editEstudanteNome: TEdit;
     listEstudantes: TListBox;
     buttonEstudanteAtualizar: TButton;
+    Edit1: TEdit;
+    buttonEstudanteDeletar: TButton;
+    Button2: TButton;
     procedure FormCreate(Sender: TObject);
     procedure buttonEstudanteInserirClick(Sender: TObject);
     procedure buttonEstudanteAtualizarClick(Sender: TObject);
+    procedure buttonEstudanteDeletarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -40,10 +45,23 @@ begin
   estudantes := Self.modelEstudante.GetEstudantes;
 
   for var estudante in estudantes do begin
-    listEstudantes.AddItem(estudante.GetNome, nil);
+    listEstudantes.AddItem(estudante.GetNome, estudante);
+  end;
+end;
+
+procedure TformMain.buttonEstudanteDeletarClick(Sender: TObject);
+var i: Integer;
+estudante: TEstudante;
+begin
+  for i := 0 to listEstudantes.Count - 1 do begin
+    if listEstudantes.Selected[i] then break;
+    if i = listEstudantes.Count - 1 then begin
+      raise Exception.Create('Nenhum usuário selecionado');
+    end;
   end;
 
-  estudantes.Free;
+  estudante := modelEstudante.GetEstudante(i);
+  modelEstudante.Delete(estudante);
 end;
 
 procedure TformMain.buttonEstudanteInserirClick(Sender: TObject);
