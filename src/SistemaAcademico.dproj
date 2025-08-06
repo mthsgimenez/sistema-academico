@@ -130,17 +130,12 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uEstudante.pas"/>
-        <DCCReference Include="uProfessor.pas"/>
         <DCCReference Include="uDatabase.pas">
             <Form>Database</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="uEstudanteModel.pas"/>
-        <DCCReference Include="uFormEstudante.pas">
-            <Form>FormEstudante</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
