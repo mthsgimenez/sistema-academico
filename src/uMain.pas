@@ -53,12 +53,9 @@ procedure TformMain.buttonEstudanteDeletarClick(Sender: TObject);
 var i: Integer;
 estudante: TEstudante;
 begin
-  for i := 0 to listEstudantes.Count - 1 do begin
-    if listEstudantes.Selected[i] then break;
-    if i = listEstudantes.Count - 1 then begin
-      raise Exception.Create('Nenhum usuário selecionado');
-    end;
-  end;
+  i := listEstudantes.ItemIndex;
+
+  if i = -1 then raise Exception.Create('Nenhum usuário selecionado');
 
   estudante := modelEstudante.GetEstudante(i);
   modelEstudante.Delete(estudante);
