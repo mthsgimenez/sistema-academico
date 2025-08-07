@@ -72,29 +72,32 @@ object formMain: TformMain
           TabOrder = 3
           OnClick = buttonEstudanteAtualizarClick
         end
-        object Edit1: TEdit
-          Left = 336
-          Top = 24
-          Width = 121
-          Height = 23
-          TabOrder = 4
-        end
         object buttonEstudanteDeletar: TButton
-          Left = 336
-          Top = 64
+          Left = 328
+          Top = 23
           Width = 75
           Height = 25
           Caption = 'Deletar'
-          TabOrder = 5
+          TabOrder = 4
           OnClick = buttonEstudanteDeletarClick
         end
-        object Button2: TButton
-          Left = 424
+        object buttonEstudanteEditar: TButton
+          Left = 328
           Top = 64
           Width = 75
           Height = 25
-          Caption = 'Button2'
+          Caption = 'Editar'
+          TabOrder = 5
+          OnClick = buttonEstudanteEditarClick
+        end
+        object buttonEstudanteEditarAcao: TButton
+          Left = 26
+          Top = 64
+          Width = 75
+          Height = 25
+          Caption = 'Atualizar'
           TabOrder = 6
+          Visible = False
         end
       end
       object tabProfessor: TTabSheet

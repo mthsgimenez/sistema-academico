@@ -18,13 +18,14 @@ type
     editEstudanteNome: TEdit;
     listEstudantes: TListBox;
     buttonEstudanteAtualizar: TButton;
-    Edit1: TEdit;
     buttonEstudanteDeletar: TButton;
-    Button2: TButton;
+    buttonEstudanteEditar: TButton;
+    buttonEstudanteEditarAcao: TButton;
     procedure FormCreate(Sender: TObject);
     procedure buttonEstudanteInserirClick(Sender: TObject);
     procedure buttonEstudanteAtualizarClick(Sender: TObject);
     procedure buttonEstudanteDeletarClick(Sender: TObject);
+    procedure buttonEstudanteEditarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -61,6 +62,20 @@ begin
   modelEstudante.Delete(estudante);
 end;
 
+procedure TformMain.buttonEstudanteEditarClick(Sender: TObject);
+var i: Integer;
+estudante: TEstudante;
+begin
+  i := listEstudantes.ItemIndex;
+  if i = -1 then raise Exception.Create('Nenhum usuário selecionado');
+
+  estudante := modelEstudante.GetEstudante(i);
+
+  editEstudanteNome.Text := estudante.GetNome;
+  buttonEstudanteInserir.Visible := False;
+  buttonEstudanteEditarAcao.Visible := True;
+end;
+
 procedure TformMain.buttonEstudanteInserirClick(Sender: TObject);
 var estudante: TEstudante;
 begin
@@ -68,6 +83,8 @@ begin
   estudante.SetNome(editEstudanteNome.Text);
 
   Self.modelEstudante.Insert(estudante);
+
+  editEstudanteNome.Clear;
 end;
 
 procedure TformMain.FormCreate(Sender: TObject);
