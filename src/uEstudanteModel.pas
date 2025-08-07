@@ -13,7 +13,7 @@ type TEstudanteModel = class
     procedure Insert(aEstudante: TEstudante);
     function GetEstudantes: TObjectList<TEstudante>;
     procedure Delete(aEstudante: TEstudante);
-    function GetEstudante(aId: Integer): TEstudante;
+    function GetEstudanteByIndex(aId: Integer): TEstudante;
 end;
 
 implementation
@@ -48,18 +48,8 @@ begin
   Self.Estudantes.Remove(aEstudante);
 end;
 
-function TEstudanteModel.GetEstudante(aId: Integer): TEstudante;
+function TEstudanteModel.GetEstudanteByIndex(aId: Integer): TEstudante;
 begin
-{
-  for var estudante in Self.Estudantes do begin
-    if estudante.GetId = aId then begin
-      Result := estudante;
-      exit;
-    end;
-  end;
-
-  raise Exception.Create('Estudante com id: ' + aId.ToString + 'não foi encontrado');
-}
   Result := Self.Estudantes[aId];
 end;
 

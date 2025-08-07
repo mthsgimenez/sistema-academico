@@ -58,7 +58,7 @@ begin
 
   if i = -1 then raise Exception.Create('Nenhum usuário selecionado');
 
-  estudante := modelEstudante.GetEstudante(i);
+  estudante := modelEstudante.GetEstudanteByIndex(i);
   modelEstudante.Delete(estudante);
 end;
 
@@ -69,7 +69,7 @@ begin
   i := listEstudantes.ItemIndex;
   if i = -1 then raise Exception.Create('Nenhum usuário selecionado');
 
-  estudante := modelEstudante.GetEstudante(i);
+  estudante := modelEstudante.GetEstudanteByIndex(i);
 
   editEstudanteNome.Text := estudante.GetNome;
   buttonEstudanteInserir.Visible := False;
