@@ -14,6 +14,7 @@ type TEstudanteModel = class
     function GetEstudantes: TObjectList<TEstudante>;
     procedure Delete(aEstudante: TEstudante);
     function GetEstudanteByIndex(aId: Integer): TEstudante;
+    procedure Edit(aEstudante: TEstudante);
 end;
 
 implementation
@@ -46,6 +47,13 @@ begin
   Self.Database.FDQuery.ExecSQL;
   Self.Database.FDQuery.Close;
   Self.Estudantes.Remove(aEstudante);
+end;
+
+procedure TEstudanteModel.Edit(aEstudante: TEstudante);
+begin
+  Self.Database.FDQuery.SQL.Text := 'UPDATE estudantes SET nome=' + QuotedStr(aEstudante.GetNome) + 'WHERE id=' + aEstudante.GetId.ToString;
+  Self.Database.FDQuery.ExecSQL;
+  Self.Database.FDQuery.Close;
 end;
 
 function TEstudanteModel.GetEstudanteByIndex(aId: Integer): TEstudante;

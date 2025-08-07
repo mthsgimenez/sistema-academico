@@ -98,6 +98,7 @@ object formMain: TformMain
           Caption = 'Atualizar'
           TabOrder = 6
           Visible = False
+          OnClick = buttonEstudanteEditarAcaoClick
         end
       end
       object tabProfessor: TTabSheet

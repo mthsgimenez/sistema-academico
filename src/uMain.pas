@@ -26,6 +26,7 @@ type
     procedure buttonEstudanteAtualizarClick(Sender: TObject);
     procedure buttonEstudanteDeletarClick(Sender: TObject);
     procedure buttonEstudanteEditarClick(Sender: TObject);
+    procedure buttonEstudanteEditarAcaoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -60,6 +61,22 @@ begin
 
   estudante := modelEstudante.GetEstudanteByIndex(i);
   modelEstudante.Delete(estudante);
+end;
+
+procedure TformMain.buttonEstudanteEditarAcaoClick(Sender: TObject);
+var i: Integer;
+estudante: TEstudante;
+begin
+  i := listEstudantes.ItemIndex;
+  if i = -1 then raise Exception.Create('Nenhum usuário selecionado');
+
+  estudante := modelEstudante.GetEstudanteByIndex(i);
+
+  estudante.SetNome(editEstudanteNome.Text);
+  modelEstudante.Edit(estudante);
+  buttonEstudanteInserir.Visible := True;
+  buttonEstudanteEditarAcao.Visible := False;
+  editEstudanteNome.Clear;
 end;
 
 procedure TformMain.buttonEstudanteEditarClick(Sender: TObject);
