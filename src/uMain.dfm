@@ -10,6 +10,7 @@ object formMain: TformMain
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesigned
   OnCreate = FormCreate
   TextHeight = 15
   object panelMain: TPanel
@@ -90,6 +91,16 @@ object formMain: TformMain
           TabOrder = 5
           Visible = False
           OnClick = buttonEstudanteEditarAcaoClick
+        end
+        object gridEstudantes: TStringGrid
+          Left = 3
+          Top = 160
+          Width = 598
+          Height = 233
+          ColCount = 2
+          RowCount = 2
+          ScrollBars = ssVertical
+          TabOrder = 6
         end
       end
       object tabProfessor: TTabSheet
