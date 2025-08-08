@@ -15,6 +15,8 @@ interface
 
 implementation
 
+uses System.SysUtils;
+
 { TEstudante }
 
 function TEstudante.GetId: Integer;
@@ -34,6 +36,10 @@ end;
 
 procedure TEstudante.SetNome(aNome: String);
 begin
+  if Trim(aNome) = '' then begin
+    raise Exception.Create('Nome não pode ser vazio');
+  end;
+
   Self.nome := aNome;
 end;
 
