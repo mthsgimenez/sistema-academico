@@ -27,7 +27,7 @@ begin
   Self.Database := aDatabase;
 
   Self.Estudantes := TObjectList<TEstudante>.Create;
-  Self.Database.FDQuery.SQL.Text := 'SELECT * FROM estudantes;';
+  Self.Database.FDQuery.SQL.Text := 'SELECT * FROM estudantes WHERE ativo=TRUE';
   Self.Database.FDQuery.Open;
 
   while not Self.Database.FDQuery.Eof do begin
@@ -43,7 +43,7 @@ end;
 
 procedure TEstudanteModel.Delete(aEstudante: TEstudante);
 begin
-  Self.Database.FDQuery.SQL.Text := 'DELETE FROM estudantes WHERE id=' + aEstudante.GetId.ToString + ';';
+  Self.Database.FDQuery.SQL.Text := 'UPDATE estudantes SET ativo=false WHERE id=' + aEstudante.GetId.ToString;
   Self.Database.FDQuery.ExecSQL;
   Self.Database.FDQuery.Close;
   Self.Estudantes.Remove(aEstudante);
@@ -70,7 +70,7 @@ procedure TEstudanteModel.Insert(aEstudante: TEstudante);
 var id: Integer;
 begin
   Self.Estudantes.Add(aEstudante);
-  Self.Database.FDQuery.SQL.Text := 'INSERT INTO estudantes (nome) VALUES (' + QuotedStr(aEstudante.GetNome) + ') RETURNING id;';
+  Self.Database.FDQuery.SQL.Text := 'INSERT INTO estudantes (nome) VALUES (' + QuotedStr(aEstudante.GetNome) + ') RETURNING id';
   Self.Database.FDQuery.Open;
 
   id := Self.Database.FDQuery.FieldByName('id').AsInteger;
