@@ -17,16 +17,15 @@ type
     buttonEstudanteInserir: TButton;
     editEstudanteNome: TEdit;
     listEstudantes: TListBox;
-    buttonEstudanteAtualizar: TButton;
     buttonEstudanteDeletar: TButton;
     buttonEstudanteEditar: TButton;
     buttonEstudanteEditarAcao: TButton;
     procedure FormCreate(Sender: TObject);
     procedure buttonEstudanteInserirClick(Sender: TObject);
-    procedure buttonEstudanteAtualizarClick(Sender: TObject);
     procedure buttonEstudanteDeletarClick(Sender: TObject);
     procedure buttonEstudanteEditarClick(Sender: TObject);
     procedure buttonEstudanteEditarAcaoClick(Sender: TObject);
+    procedure AtualizarListBox;
   private
     { Private declarations }
   public
@@ -40,7 +39,7 @@ implementation
 
 {$R *.dfm}
 
-procedure TformMain.buttonEstudanteAtualizarClick(Sender: TObject);
+procedure TformMain.AtualizarListBox;
 var estudantes: TObjectList<TEstudante>;
 begin
   listEstudantes.Clear;
@@ -56,11 +55,11 @@ var i: Integer;
 estudante: TEstudante;
 begin
   i := listEstudantes.ItemIndex;
-
   if i = -1 then raise Exception.Create('Nenhum usuário selecionado');
 
   estudante := modelEstudante.GetEstudanteByIndex(i);
   modelEstudante.Delete(estudante);
+  AtualizarListBox;
 end;
 
 procedure TformMain.buttonEstudanteEditarAcaoClick(Sender: TObject);
@@ -77,6 +76,7 @@ begin
   buttonEstudanteInserir.Visible := True;
   buttonEstudanteEditarAcao.Visible := False;
   editEstudanteNome.Clear;
+  AtualizarListBox;
 end;
 
 procedure TformMain.buttonEstudanteEditarClick(Sender: TObject);
@@ -102,11 +102,13 @@ begin
   Self.modelEstudante.Insert(estudante);
 
   editEstudanteNome.Clear;
+  AtualizarListBox;
 end;
 
 procedure TformMain.FormCreate(Sender: TObject);
 begin
   Self.modelEstudante := TEstudanteModel.Create(Database);
+  AtualizarListBox;
 end;
 
 end.

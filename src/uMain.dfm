@@ -63,22 +63,13 @@ object formMain: TformMain
           ItemHeight = 15
           TabOrder = 2
         end
-        object buttonEstudanteAtualizar: TButton
-          Left = 184
-          Top = 136
-          Width = 121
-          Height = 25
-          Caption = 'Atualizar'
-          TabOrder = 3
-          OnClick = buttonEstudanteAtualizarClick
-        end
         object buttonEstudanteDeletar: TButton
           Left = 328
           Top = 23
           Width = 75
           Height = 25
           Caption = 'Deletar'
-          TabOrder = 4
+          TabOrder = 3
           OnClick = buttonEstudanteDeletarClick
         end
         object buttonEstudanteEditar: TButton
@@ -87,7 +78,7 @@ object formMain: TformMain
           Width = 75
           Height = 25
           Caption = 'Editar'
-          TabOrder = 5
+          TabOrder = 4
           OnClick = buttonEstudanteEditarClick
         end
         object buttonEstudanteEditarAcao: TButton
@@ -96,7 +87,7 @@ object formMain: TformMain
           Width = 75
           Height = 25
           Caption = 'Atualizar'
-          TabOrder = 6
+          TabOrder = 5
           Visible = False
           OnClick = buttonEstudanteEditarAcaoClick
         end
