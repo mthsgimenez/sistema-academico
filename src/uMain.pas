@@ -16,7 +16,6 @@ type
     tabProfessor: TTabSheet;
     buttonEstudanteInserir: TButton;
     editEstudanteNome: TEdit;
-    listEstudantes: TListBox;
     buttonEstudanteDeletar: TButton;
     buttonEstudanteEditar: TButton;
     buttonEstudanteEditarAcao: TButton;
@@ -26,7 +25,6 @@ type
     procedure buttonEstudanteDeletarClick(Sender: TObject);
     procedure buttonEstudanteEditarClick(Sender: TObject);
     procedure buttonEstudanteEditarAcaoClick(Sender: TObject);
-    procedure AtualizarListBox;
     procedure AtualizarStringGrid;
   private
     { Private declarations }
@@ -40,17 +38,6 @@ var
 implementation
 
 {$R *.dfm}
-
-procedure TformMain.AtualizarListBox;
-var estudantes: TObjectList<TEstudante>;
-begin
-  listEstudantes.Clear;
-  estudantes := Self.modelEstudante.GetEstudantes;
-
-  for var estudante in estudantes do begin
-    listEstudantes.AddItem(estudante.GetNome, estudante);
-  end;
-end;
 
 procedure TformMain.AtualizarStringGrid;
 var estudantes: TObjectList<TEstudante>;
@@ -76,7 +63,6 @@ begin
 
   estudante := modelEstudante.GetEstudanteByIndex(i);
   modelEstudante.Delete(estudante);
-  AtualizarListBox;
   AtualizarStringGrid;
 end;
 
@@ -94,7 +80,6 @@ begin
   buttonEstudanteInserir.Visible := True;
   buttonEstudanteEditarAcao.Visible := False;
   editEstudanteNome.Clear;
-  AtualizarListBox;
   AtualizarStringGrid;
 end;
 
@@ -121,7 +106,6 @@ begin
   Self.modelEstudante.Insert(estudante);
 
   editEstudanteNome.Clear;
-  AtualizarListBox;
   AtualizarStringGrid;
 end;
 
@@ -130,7 +114,6 @@ begin
   Self.modelEstudante := TEstudanteModel.Create(Database);
   gridEstudantes.Cells[0, 0] := 'Código';
   gridEstudantes.Cells[1, 0] := 'Nome';
-  AtualizarListBox;
   AtualizarStringGrid;
 end;
 

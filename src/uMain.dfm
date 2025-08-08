@@ -41,8 +41,8 @@ object formMain: TformMain
       object tabAluno: TTabSheet
         Caption = 'tabAluno'
         object buttonEstudanteInserir: TButton
-          Left = 26
-          Top = 64
+          Left = 147
+          Top = 295
           Width = 75
           Height = 25
           Caption = 'Inserir'
@@ -50,57 +50,49 @@ object formMain: TformMain
           OnClick = buttonEstudanteInserirClick
         end
         object editEstudanteNome: TEdit
-          Left = 26
-          Top = 24
+          Left = 3
+          Top = 296
           Width = 121
           Height = 23
           TabOrder = 1
         end
-        object listEstudantes: TListBox
-          Left = 184
-          Top = 24
-          Width = 121
-          Height = 97
-          ItemHeight = 15
-          TabOrder = 2
-        end
         object buttonEstudanteDeletar: TButton
-          Left = 328
-          Top = 23
+          Left = 536
+          Top = 295
           Width = 75
           Height = 25
           Caption = 'Deletar'
-          TabOrder = 3
+          TabOrder = 2
           OnClick = buttonEstudanteDeletarClick
         end
         object buttonEstudanteEditar: TButton
-          Left = 328
-          Top = 64
+          Left = 440
+          Top = 295
           Width = 75
           Height = 25
           Caption = 'Editar'
-          TabOrder = 4
+          TabOrder = 3
           OnClick = buttonEstudanteEditarClick
         end
         object buttonEstudanteEditarAcao: TButton
-          Left = 26
-          Top = 64
+          Left = 147
+          Top = 296
           Width = 75
           Height = 25
           Caption = 'Atualizar'
-          TabOrder = 5
+          TabOrder = 4
           Visible = False
           OnClick = buttonEstudanteEditarAcaoClick
         end
         object gridEstudantes: TStringGrid
           Left = 3
-          Top = 160
-          Width = 598
-          Height = 233
+          Top = 3
+          Width = 608
+          Height = 278
           ColCount = 2
           RowCount = 2
           ScrollBars = ssVertical
-          TabOrder = 6
+          TabOrder = 5
         end
       end
       object tabProfessor: TTabSheet
