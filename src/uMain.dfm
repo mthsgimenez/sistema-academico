@@ -41,8 +41,8 @@ object formMain: TformMain
       object tabAluno: TTabSheet
         Caption = 'tabAluno'
         object buttonEstudanteInserir: TButton
-          Left = 147
-          Top = 295
+          Left = 155
+          Top = 381
           Width = 75
           Height = 25
           Caption = 'Inserir'
@@ -51,14 +51,14 @@ object formMain: TformMain
         end
         object editEstudanteNome: TEdit
           Left = 3
-          Top = 296
-          Width = 121
+          Top = 383
+          Width = 138
           Height = 23
           TabOrder = 1
         end
         object buttonEstudanteDeletar: TButton
           Left = 536
-          Top = 295
+          Top = 381
           Width = 75
           Height = 25
           Caption = 'Deletar'
@@ -66,8 +66,8 @@ object formMain: TformMain
           OnClick = buttonEstudanteDeletarClick
         end
         object buttonEstudanteEditar: TButton
-          Left = 440
-          Top = 295
+          Left = 448
+          Top = 381
           Width = 75
           Height = 25
           Caption = 'Editar'
@@ -75,8 +75,8 @@ object formMain: TformMain
           OnClick = buttonEstudanteEditarClick
         end
         object buttonEstudanteEditarAcao: TButton
-          Left = 147
-          Top = 296
+          Left = 155
+          Top = 381
           Width = 75
           Height = 25
           Caption = 'Atualizar'
@@ -88,8 +88,9 @@ object formMain: TformMain
           Left = 3
           Top = 3
           Width = 608
-          Height = 278
+          Height = 372
           ColCount = 2
+          FixedColor = clBtnShadow
           RowCount = 2
           ScrollBars = ssVertical
           TabOrder = 5

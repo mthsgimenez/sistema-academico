@@ -52,6 +52,7 @@ begin
     gridEstudantes.Cells[0, novaLinha] := estudante.GetId.ToString;
     gridEstudantes.Cells[1, novaLinha] := estudante.GetNome;
   end;
+  gridEstudantes.FixedRows := 1;
 end;
 
 procedure TformMain.buttonEstudanteDeletarClick(Sender: TObject);
@@ -114,6 +115,8 @@ begin
   Self.modelEstudante := TEstudanteModel.Create(Database);
   gridEstudantes.Cells[0, 0] := 'Código';
   gridEstudantes.Cells[1, 0] := 'Nome';
+  gridEstudantes.ColWidths[0] := 100;
+  gridEstudantes.ColWidths[1] := gridEstudantes.Width - 100;
   AtualizarStringGrid;
 end;
 
