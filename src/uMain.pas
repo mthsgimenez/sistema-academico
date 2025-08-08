@@ -52,7 +52,8 @@ begin
     gridEstudantes.Cells[0, novaLinha] := estudante.GetId.ToString;
     gridEstudantes.Cells[1, novaLinha] := estudante.GetNome;
   end;
-  gridEstudantes.FixedRows := 1;
+
+  if gridEstudantes.RowCount > 1 then gridEstudantes.FixedRows := 1;
 end;
 
 procedure TformMain.buttonEstudanteDeletarClick(Sender: TObject);
