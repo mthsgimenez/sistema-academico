@@ -1,4 +1,5 @@
 src/__history/
+src/__recovery/
 src/Win32/
 src/*.identcache
 src/*.local
