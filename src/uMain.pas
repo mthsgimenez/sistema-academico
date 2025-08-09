@@ -15,16 +15,13 @@ type
     tabAluno: TTabSheet;
     tabProfessor: TTabSheet;
     buttonEstudanteInserir: TButton;
-    editEstudanteNome: TEdit;
     buttonEstudanteDeletar: TButton;
     buttonEstudanteEditar: TButton;
-    buttonEstudanteEditarAcao: TButton;
     gridEstudantes: TStringGrid;
     procedure FormCreate(Sender: TObject);
     procedure buttonEstudanteInserirClick(Sender: TObject);
     procedure buttonEstudanteDeletarClick(Sender: TObject);
     procedure buttonEstudanteEditarClick(Sender: TObject);
-    procedure buttonEstudanteEditarAcaoClick(Sender: TObject);
     procedure UpdateStringGrid;
   private
     { Private declarations }
@@ -71,24 +68,6 @@ begin
   if choice = mrNo then exit;
   
   modelEstudante.Delete(estudante);
-  UpdateStringGrid;
-end;
-
-procedure TformMain.buttonEstudanteEditarAcaoClick(Sender: TObject);
-var
-  i: Integer;
-  estudante: TEstudante;
-begin
-  i := gridEstudantes.Row - 1;
-  if i = -1 then raise Exception.Create('Nenhum usuário selecionado');
-
-  estudante := modelEstudante.GetEstudanteByIndex(i);
-
-  estudante.SetNome(editEstudanteNome.Text);
-  modelEstudante.Edit(estudante);
-  buttonEstudanteInserir.Visible := True;
-  buttonEstudanteEditarAcao.Visible := False;
-  editEstudanteNome.Clear;
   UpdateStringGrid;
 end;
 

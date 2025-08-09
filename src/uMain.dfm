@@ -41,59 +41,78 @@ object formMain: TformMain
       object tabAluno: TTabSheet
         Caption = 'tabAluno'
         object buttonEstudanteInserir: TButton
-          Left = 155
-          Top = 381
+          AlignWithMargins = True
+          Left = 5
+          Top = 382
           Width = 75
-          Height = 25
+          Height = 27
+          Margins.Left = 5
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          Align = alLeft
           Caption = 'Inserir'
           TabOrder = 0
           OnClick = buttonEstudanteInserirClick
-        end
-        object editEstudanteNome: TEdit
-          Left = 3
-          Top = 383
-          Width = 138
-          Height = 23
-          TabOrder = 1
+          ExplicitLeft = 0
+          ExplicitTop = 334
+          ExplicitHeight = 614
         end
         object buttonEstudanteDeletar: TButton
-          Left = 536
-          Top = 381
+          AlignWithMargins = True
+          Left = 534
+          Top = 382
           Width = 75
-          Height = 25
+          Height = 27
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 5
+          Margins.Bottom = 0
+          Align = alRight
           Caption = 'Deletar'
-          TabOrder = 2
+          TabOrder = 1
           OnClick = buttonEstudanteDeletarClick
+          ExplicitLeft = 536
+          ExplicitTop = 381
+          ExplicitHeight = 25
         end
         object buttonEstudanteEditar: TButton
-          Left = 448
-          Top = 381
+          AlignWithMargins = True
+          Left = 90
+          Top = 382
           Width = 75
-          Height = 25
+          Height = 27
+          Margins.Left = 10
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          Align = alLeft
           Caption = 'Editar'
-          TabOrder = 3
+          TabOrder = 2
           OnClick = buttonEstudanteEditarClick
-        end
-        object buttonEstudanteEditarAcao: TButton
-          Left = 155
-          Top = 381
-          Width = 75
-          Height = 25
-          Caption = 'Atualizar'
-          TabOrder = 4
-          Visible = False
-          OnClick = buttonEstudanteEditarAcaoClick
+          ExplicitLeft = 448
+          ExplicitTop = 381
+          ExplicitHeight = 25
         end
         object gridEstudantes: TStringGrid
-          Left = 3
-          Top = 3
-          Width = 608
+          AlignWithMargins = True
+          Left = 5
+          Top = 5
+          Width = 604
           Height = 372
+          Margins.Left = 5
+          Margins.Top = 5
+          Margins.Right = 5
+          Margins.Bottom = 5
+          Align = alTop
           ColCount = 2
           FixedColor = clBtnShadow
           RowCount = 2
           ScrollBars = ssVertical
-          TabOrder = 5
+          TabOrder = 3
+          ExplicitLeft = 3
+          ExplicitTop = 3
+          ExplicitWidth = 608
         end
       end
       object tabProfessor: TTabSheet
