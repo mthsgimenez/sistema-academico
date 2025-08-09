@@ -58,13 +58,18 @@ end;
 
 procedure TformMain.buttonEstudanteDeletarClick(Sender: TObject);
 var
-  i: Integer;
+  i, choice: Integer;
   estudante: TEstudante;
 begin
   i := gridEstudantes.Row - 1;
   if i = -1 then raise Exception.Create('Nenhum usuário selecionado');
 
   estudante := modelEstudante.GetEstudanteByIndex(i);
+
+  choice := MessageDlg('Deseja mesmo deletar o estudante: ' + estudante.GetNome + '?', TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0);
+
+  if choice = mrNo then exit;
+  
   modelEstudante.Delete(estudante);
   UpdateStringGrid;
 end;
