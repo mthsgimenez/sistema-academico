@@ -29,7 +29,6 @@ type
   private
     { Private declarations }
   public
-    modelEstudante: TEstudanteModel;
   end;
 
 var
@@ -44,7 +43,7 @@ var estudantes: TObjectList<TEstudante>;
 newRow: Integer;
 begin
   gridEstudantes.RowCount := 1;
-  estudantes := Self.modelEstudante.GetEstudantes;
+  estudantes := ModelEstudante.GetEstudantes;
 
   for var estudante in estudantes do begin
     newRow := gridEstudantes.RowCount;
@@ -105,7 +104,7 @@ begin
   estudante := TEstudante.Create;
   estudante.SetNome(editEstudanteNome.Text);
 
-  Self.modelEstudante.Insert(estudante);
+  ModelEstudante.Insert(estudante);
 
   editEstudanteNome.Clear;
   UpdateStringGrid;
@@ -113,7 +112,7 @@ end;
 
 procedure TformMain.FormCreate(Sender: TObject);
 begin
-  Self.modelEstudante := TEstudanteModel.Create(Database);
+  uEstudanteModel.ModelEstudante := TEstudanteModel.Create(Database);
   gridEstudantes.Cells[0, 0] := 'Código';
   gridEstudantes.Cells[1, 0] := 'Nome';
   gridEstudantes.ColWidths[0] := 100;

@@ -17,6 +17,8 @@ type TEstudanteModel = class
     procedure Edit(aEstudante: TEstudante);
 end;
 
+var ModelEstudante: TEstudanteModel;
+
 implementation
 
 { TEstudanteModel }
