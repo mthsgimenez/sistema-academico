@@ -136,6 +136,10 @@
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="uEstudanteModel.pas"/>
+        <DCCReference Include="uFormEstudante.pas">
+            <Form>formEstudante</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

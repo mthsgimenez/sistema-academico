@@ -5,7 +5,8 @@ uses
   uMain in 'uMain.pas' {formMain},
   uEstudante in 'uEstudante.pas',
   uDatabase in 'uDatabase.pas' {Database: TDataModule},
-  uEstudanteModel in 'uEstudanteModel.pas';
+  uEstudanteModel in 'uEstudanteModel.pas',
+  uFormEstudante in 'uFormEstudante.pas' {formEstudante};
 
 {$R *.res}
 
@@ -14,5 +15,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDatabase, Database);
   Application.CreateForm(TformMain, formMain);
+  Application.CreateForm(TformEstudante, formEstudante);
   Application.Run;
 end.

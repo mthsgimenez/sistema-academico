@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, FireDAC.Comp.Client,
   Vcl.ComCtrls, Vcl.ExtCtrls, System.Generics.Collections, uDatabase, uEstudanteModel, uEstudante,
-  Vcl.Grids;
+  Vcl.Grids, uFormEstudante;
 
 type
   TformMain = class(TForm)
@@ -85,28 +85,30 @@ begin
 end;
 
 procedure TformMain.buttonEstudanteEditarClick(Sender: TObject);
-var i: Integer;
-estudante: TEstudante;
+var
+  form: TFormEstudante;
+  i: Integer;
+  estudante: TEstudante;
 begin
   i := gridEstudantes.Row - 1;
   if i = -1 then raise Exception.Create('Nenhum usuário selecionado');
 
   estudante := modelEstudante.GetEstudanteByIndex(i);
 
-  editEstudanteNome.Text := estudante.GetNome;
-  buttonEstudanteInserir.Visible := False;
-  buttonEstudanteEditarAcao.Visible := True;
+  form := TformEstudante.Create(estudante, nil);
+  form.ShowModal;
+  form.Free;
+
+  UpdateStringGrid;
 end;
 
 procedure TformMain.buttonEstudanteInserirClick(Sender: TObject);
-var estudante: TEstudante;
+var form: TFormEstudante;
 begin
-  estudante := TEstudante.Create;
-  estudante.SetNome(editEstudanteNome.Text);
+  form := TFormEstudante.Create(nil, nil);
+  form.ShowModal;
+  form.Free;
 
-  ModelEstudante.Insert(estudante);
-
-  editEstudanteNome.Clear;
   UpdateStringGrid;
 end;
 
