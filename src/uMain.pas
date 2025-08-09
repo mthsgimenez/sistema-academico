@@ -25,7 +25,7 @@ type
     procedure buttonEstudanteDeletarClick(Sender: TObject);
     procedure buttonEstudanteEditarClick(Sender: TObject);
     procedure buttonEstudanteEditarAcaoClick(Sender: TObject);
-    procedure AtualizarStringGrid;
+    procedure UpdateStringGrid;
   private
     { Private declarations }
   public
@@ -39,18 +39,18 @@ implementation
 
 {$R *.dfm}
 
-procedure TformMain.AtualizarStringGrid;
+procedure TformMain.UpdateStringGrid;
 var estudantes: TObjectList<TEstudante>;
-novaLinha: Integer;
+newRow: Integer;
 begin
   gridEstudantes.RowCount := 1;
   estudantes := Self.modelEstudante.GetEstudantes;
 
   for var estudante in estudantes do begin
-    novaLinha := gridEstudantes.RowCount;
-    gridEstudantes.RowCount := novaLinha + 1;
-    gridEstudantes.Cells[0, novaLinha] := estudante.GetId.ToString;
-    gridEstudantes.Cells[1, novaLinha] := estudante.GetNome;
+    newRow := gridEstudantes.RowCount;
+    gridEstudantes.RowCount := newRow + 1;
+    gridEstudantes.Cells[0, newRow] := estudante.GetId.ToString;
+    gridEstudantes.Cells[1, newRow] := estudante.GetNome;
   end;
 
   if gridEstudantes.RowCount > 1 then gridEstudantes.FixedRows := 1;
@@ -65,7 +65,7 @@ begin
 
   estudante := modelEstudante.GetEstudanteByIndex(i);
   modelEstudante.Delete(estudante);
-  AtualizarStringGrid;
+  UpdateStringGrid;
 end;
 
 procedure TformMain.buttonEstudanteEditarAcaoClick(Sender: TObject);
@@ -82,7 +82,7 @@ begin
   buttonEstudanteInserir.Visible := True;
   buttonEstudanteEditarAcao.Visible := False;
   editEstudanteNome.Clear;
-  AtualizarStringGrid;
+  UpdateStringGrid;
 end;
 
 procedure TformMain.buttonEstudanteEditarClick(Sender: TObject);
@@ -108,7 +108,7 @@ begin
   Self.modelEstudante.Insert(estudante);
 
   editEstudanteNome.Clear;
-  AtualizarStringGrid;
+  UpdateStringGrid;
 end;
 
 procedure TformMain.FormCreate(Sender: TObject);
@@ -118,7 +118,7 @@ begin
   gridEstudantes.Cells[1, 0] := 'Nome';
   gridEstudantes.ColWidths[0] := 100;
   gridEstudantes.ColWidths[1] := gridEstudantes.Width - 100;
-  AtualizarStringGrid;
+  UpdateStringGrid;
 end;
 
 end.
