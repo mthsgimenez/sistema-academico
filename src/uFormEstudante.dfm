@@ -10,6 +10,7 @@ object formEstudante: TformEstudante
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnShow = FormShow
   TextHeight = 15
   object panelEstudante: TPanel
     AlignWithMargins = True
@@ -52,6 +53,7 @@ object formEstudante: TformEstudante
       Margins.Bottom = 0
       Align = alTop
       TabOrder = 1
+      OnKeyDown = editEstudanteNomeKeyDown
     end
   end
 end

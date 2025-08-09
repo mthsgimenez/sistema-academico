@@ -12,6 +12,9 @@ type
     buttonConfirmar: TButton;
     editEstudanteNome: TEdit;
     procedure buttonConfirmarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure editEstudanteNomeKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     currentEstudante: TEstudante;
   public
@@ -52,6 +55,17 @@ begin
     Self.currentEstudante := aEstudante;
     Self.editEstudanteNome.Text := Self.currentEstudante.GetNome;
   end;
+end;
+
+procedure TformEstudante.editEstudanteNomeKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if key = vk_return then buttonConfirmarClick(Sender);
+end;
+
+procedure TformEstudante.FormShow(Sender: TObject);
+begin
+  editEstudanteNome.SetFocus;
 end;
 
 end.
