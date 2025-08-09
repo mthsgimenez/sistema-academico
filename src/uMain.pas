@@ -39,8 +39,9 @@ implementation
 {$R *.dfm}
 
 procedure TformMain.UpdateStringGrid;
-var estudantes: TObjectList<TEstudante>;
-newRow: Integer;
+var
+  estudantes: TObjectList<TEstudante>;
+  newRow: Integer;
 begin
   gridEstudantes.RowCount := 1;
   estudantes := ModelEstudante.GetEstudantes;
@@ -56,8 +57,9 @@ begin
 end;
 
 procedure TformMain.buttonEstudanteDeletarClick(Sender: TObject);
-var i: Integer;
-estudante: TEstudante;
+var
+  i: Integer;
+  estudante: TEstudante;
 begin
   i := gridEstudantes.Row - 1;
   if i = -1 then raise Exception.Create('Nenhum usuário selecionado');
@@ -68,8 +70,9 @@ begin
 end;
 
 procedure TformMain.buttonEstudanteEditarAcaoClick(Sender: TObject);
-var i: Integer;
-estudante: TEstudante;
+var
+  i: Integer;
+  estudante: TEstudante;
 begin
   i := gridEstudantes.Row - 1;
   if i = -1 then raise Exception.Create('Nenhum usuário selecionado');
@@ -103,7 +106,8 @@ begin
 end;
 
 procedure TformMain.buttonEstudanteInserirClick(Sender: TObject);
-var form: TFormEstudante;
+var
+  form: TFormEstudante;
 begin
   form := TFormEstudante.Create(nil, nil);
   form.ShowModal;
