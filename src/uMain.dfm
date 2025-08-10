@@ -34,15 +34,13 @@ object formMain: TformMain
       Margins.Top = 0
       Margins.Right = 0
       Margins.Bottom = 0
-      ActivePage = tabAluno
+      ActivePage = tabEstudante
       Align = alClient
       TabOrder = 0
-      ExplicitLeft = 2
-      ExplicitTop = 0
-      object tabAluno: TTabSheet
-        Caption = 'tabAluno'
-        OnHide = tabAlunoHide
-        OnShow = tabAlunoShow
+      object tabEstudante: TTabSheet
+        Caption = 'tabEstudante'
+        OnHide = tabEstudanteHide
+        OnShow = tabEstudanteShow
         object buttonEstudanteInserir: TButton
           AlignWithMargins = True
           Left = 5

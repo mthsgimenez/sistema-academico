@@ -12,7 +12,7 @@ type
   TformMain = class(TForm)
     panelMain: TPanel;
     pageMain: TPageControl;
-    tabAluno: TTabSheet;
+    tabEstudante: TTabSheet;
     tabProfessor: TTabSheet;
     buttonEstudanteInserir: TButton;
     buttonEstudanteDeletar: TButton;
@@ -22,8 +22,8 @@ type
     procedure buttonEstudanteDeletarClick(Sender: TObject);
     procedure buttonEstudanteEditarClick(Sender: TObject);
     procedure UpdateStringGrid;
-    procedure tabAlunoHide(Sender: TObject);
-    procedure tabAlunoShow(Sender: TObject);
+    procedure tabEstudanteHide(Sender: TObject);
+    procedure tabEstudanteShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -101,12 +101,12 @@ begin
   UpdateStringGrid;
 end;
 
-procedure TformMain.tabAlunoHide(Sender: TObject);
+procedure TformMain.tabEstudanteHide(Sender: TObject);
 begin
   uEstudanteModel.ModelEstudante.Free;
 end;
 
-procedure TformMain.tabAlunoShow(Sender: TObject);
+procedure TformMain.tabEstudanteShow(Sender: TObject);
 begin
   uEstudanteModel.ModelEstudante := TEstudanteModel.Create(Database);
 
