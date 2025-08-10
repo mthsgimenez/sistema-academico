@@ -10,6 +10,7 @@ type TEstudanteModel = class
     Estudantes: TObjectList<TEstudante>;
   public
     constructor Create(aDatabase: TDatabase);
+    destructor Destroy;
     procedure Insert(aEstudante: TEstudante);
     function GetEstudantes: TObjectList<TEstudante>;
     procedure Delete(aEstudante: TEstudante);
@@ -49,6 +50,12 @@ begin
   Self.Database.FDQuery.ExecSQL;
   Self.Database.FDQuery.Close;
   Self.Estudantes.Remove(aEstudante);
+end;
+
+destructor TEstudanteModel.Destroy;
+begin
+  Self.Estudantes.Free;
+  inherited;
 end;
 
 procedure TEstudanteModel.Edit(aEstudante: TEstudante);
