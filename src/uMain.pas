@@ -18,11 +18,12 @@ type
     buttonEstudanteDeletar: TButton;
     buttonEstudanteEditar: TButton;
     gridEstudantes: TStringGrid;
-    procedure FormCreate(Sender: TObject);
     procedure buttonEstudanteInserirClick(Sender: TObject);
     procedure buttonEstudanteDeletarClick(Sender: TObject);
     procedure buttonEstudanteEditarClick(Sender: TObject);
     procedure UpdateStringGrid;
+    procedure tabAlunoHide(Sender: TObject);
+    procedure tabAlunoShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -100,13 +101,20 @@ begin
   UpdateStringGrid;
 end;
 
-procedure TformMain.FormCreate(Sender: TObject);
+procedure TformMain.tabAlunoHide(Sender: TObject);
+begin
+  uEstudanteModel.ModelEstudante.Free;
+end;
+
+procedure TformMain.tabAlunoShow(Sender: TObject);
 begin
   uEstudanteModel.ModelEstudante := TEstudanteModel.Create(Database);
+
   gridEstudantes.Cells[0, 0] := 'Código';
   gridEstudantes.Cells[1, 0] := 'Nome';
   gridEstudantes.ColWidths[0] := 100;
   gridEstudantes.ColWidths[1] := gridEstudantes.Width - 100;
+
   UpdateStringGrid;
 end;
 

@@ -11,7 +11,6 @@ object formMain: TformMain
   Font.Name = 'Segoe UI'
   Font.Style = []
   Position = poDesigned
-  OnCreate = FormCreate
   TextHeight = 15
   object panelMain: TPanel
     AlignWithMargins = True
@@ -38,8 +37,12 @@ object formMain: TformMain
       ActivePage = tabAluno
       Align = alClient
       TabOrder = 0
+      ExplicitLeft = 2
+      ExplicitTop = 0
       object tabAluno: TTabSheet
         Caption = 'tabAluno'
+        OnHide = tabAlunoHide
+        OnShow = tabAlunoShow
         object buttonEstudanteInserir: TButton
           AlignWithMargins = True
           Left = 5
@@ -54,9 +57,6 @@ object formMain: TformMain
           Caption = 'Inserir'
           TabOrder = 0
           OnClick = buttonEstudanteInserirClick
-          ExplicitLeft = 0
-          ExplicitTop = 334
-          ExplicitHeight = 614
         end
         object buttonEstudanteDeletar: TButton
           AlignWithMargins = True
@@ -72,9 +72,6 @@ object formMain: TformMain
           Caption = 'Deletar'
           TabOrder = 1
           OnClick = buttonEstudanteDeletarClick
-          ExplicitLeft = 536
-          ExplicitTop = 381
-          ExplicitHeight = 25
         end
         object buttonEstudanteEditar: TButton
           AlignWithMargins = True
@@ -90,9 +87,6 @@ object formMain: TformMain
           Caption = 'Editar'
           TabOrder = 2
           OnClick = buttonEstudanteEditarClick
-          ExplicitLeft = 448
-          ExplicitTop = 381
-          ExplicitHeight = 25
         end
         object gridEstudantes: TStringGrid
           AlignWithMargins = True
@@ -110,9 +104,6 @@ object formMain: TformMain
           RowCount = 2
           ScrollBars = ssVertical
           TabOrder = 3
-          ExplicitLeft = 3
-          ExplicitTop = 3
-          ExplicitWidth = 608
         end
       end
       object tabProfessor: TTabSheet
