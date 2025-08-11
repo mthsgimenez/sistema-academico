@@ -9,7 +9,8 @@ uses
   uFormEstudante in 'uFormEstudante.pas' {formEstudante},
   uProfessor in 'uProfessor.pas',
   uProfessorModel in 'uProfessorModel.pas',
-  uFormProfessor in 'uFormProfessor.pas' {formProfessor};
+  uFormProfessor in 'uFormProfessor.pas' {formProfessor},
+  uCPF in 'uCPF.pas';
 
 {$R *.res}
 

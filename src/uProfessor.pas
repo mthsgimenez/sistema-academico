@@ -2,18 +2,20 @@ unit uProfessor;
 
 interface
 
+uses uCPF;
+
   type TProfessor = class
     private
       id: Integer;
       nome: String;
-      cpf: String;
+      cpf: TCPF;
     public
       procedure SetId(aId: Integer);
       function GetId: Integer;
       procedure SetNome(aNome: String);
       function GetNome: String;
-      procedure SetCpf(aCpf: String);
-      function GetCpf: String;
+      procedure SetCPF(aCPF: TCPF);
+      function GetCPF: String;
   end;
 
 implementation
@@ -22,9 +24,9 @@ uses System.SysUtils;
 
 { TProfessor }
 
-function TProfessor.GetCpf: String;
+function TProfessor.GetCPF: String;
 begin
-  Result := Self.cpf;
+  Result := Self.cpf.GetCPF;
 end;
 
 function TProfessor.GetId: Integer;
@@ -37,11 +39,9 @@ begin
   Result := Self.nome;
 end;
 
-procedure TProfessor.SetCpf(aCpf: String);
+procedure TProfessor.SetCPF(aCpf: TCPF);
 begin
-  if aCpf.Length <> 11 then raise Exception.Create('CPF inválido');
-
-  Self.cpf := aCpf;
+  Self.cpf := aCPF;
 end;
 
 procedure TProfessor.SetId(aId: Integer);

@@ -146,6 +146,7 @@
             <Form>formProfessor</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="uCPF.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

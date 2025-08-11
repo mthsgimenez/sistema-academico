@@ -2,7 +2,7 @@ unit uProfessorModel;
 
 interface
 
-uses uDatabase, uProfessor, System.SysUtils, System.Generics.Collections;
+uses uDatabase, uProfessor, System.SysUtils, System.Generics.Collections, uCPF;
 
   type TProfessorModel = class
     private
@@ -25,7 +25,11 @@ implementation
 { TProfessorModel }
 
 constructor TProfessorModel.Create(aDatabase: TDatabase);
-var professor: TProfessor;
+var
+  professor: TProfessor;
+  nome: String;
+  id: Integer;
+  cpf: TCPF;
 begin
   Self.Database := aDatabase;
 
@@ -35,10 +39,14 @@ begin
   Self.Database.FDQuery.Open;
 
   while not Self.Database.FDQuery.Eof do begin
+    nome := Self.Database.FDQuery.FieldByName('nome').AsString;
+    id := Self.Database.FDQuery.FieldByName('id').AsInteger;
+    cpf := TCPF.Create(Self.Database.FDQuery.FieldByName('cpf').AsString);
+
     professor := TProfessor.Create;
-    professor.SetNome(Self.Database.FDQuery.FieldByName('nome').AsString);
-    professor.SetId(Self.Database.FDQuery.FieldByName('id').AsInteger);
-    professor.SetCpf(Self.Database.FDQuery.FieldByName('cpf').AsString);
+    professor.SetNome(nome);
+    professor.SetId(id);
+    professor.SetCPF(cpf);
 
     Self.Professores.Add(professor);
 

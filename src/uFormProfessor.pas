@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, uProfessor, uProfessorModel;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, uProfessor, uProfessorModel, uCPF;
 
 type
   TformProfessor = class(TForm)
@@ -33,10 +33,11 @@ implementation
 
 procedure TformProfessor.buttonConfirmarClick(Sender: TObject);
 var
-  nome, cpf: String;
+  nome: String;
+  cpf: TCPF;
 begin
   nome := editProfessorNome.Text;
-  cpf := editProfessorCPF.Text;
+  cpf := TCPF.Create(editProfessorCPF.Text);
 
   if Self.currentProfessor = nil then begin
     Self.currentProfessor := TProfessor.Create;
