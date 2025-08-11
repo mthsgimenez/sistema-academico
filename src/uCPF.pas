@@ -20,9 +20,7 @@ uses System.SysUtils;
 
 constructor TCPF.Create(aCPF: String);
 begin
-  Validate(aCPF);
-
-  Self.cpf := aCPF;
+  Self.SetCPF(aCPF);
 end;
 
 function TCPF.GetCPF: String;
@@ -32,9 +30,9 @@ end;
 
 procedure TCPF.SetCPF(aCPF: String);
 begin
-  Validate(aCPF);
+  Validate(Trim(aCPF));
 
-  Self.cpf := aCPF;
+  Self.cpf := Trim(aCPF);
 end;
 
 function TCPF.Validate(aCPF: String): Boolean;
