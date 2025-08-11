@@ -26,6 +26,7 @@ type
     procedure buttonEstudanteDeletarClick(Sender: TObject);
     procedure buttonEstudanteEditarClick(Sender: TObject);
     procedure UpdateStringGrid;
+    procedure UpdateGridEstudante;
     procedure UpdateGridProfessor;
     procedure tabEstudanteHide(Sender: TObject);
     procedure tabEstudanteShow(Sender: TObject);
@@ -39,6 +40,8 @@ type
   public
   end;
 
+  TTab = (estudante, professor);
+
 var
   formMain: TformMain;
 
@@ -46,7 +49,7 @@ implementation
 
 {$R *.dfm}
 
-procedure TformMain.UpdateStringGrid;
+procedure TformMain.UpdateGridEstudante;
 var
   estudantes: TObjectList<TEstudante>;
   newRow, i: Integer;
@@ -89,6 +92,18 @@ begin
   if i > gridProfessores.RowCount - 1 then i := i - 1;
 
   gridProfessores.Row := i;
+end;
+
+procedure TformMain.UpdateStringGrid;
+var
+  tab: TTab;
+begin
+  tab := TTab(pageMain.ActivePage.TabIndex);
+
+  case tab of
+    estudante: UpdateGridEstudante;
+    professor: UpdateGridProfessor;
+  end;
 end;
 
 procedure TformMain.buttonEstudanteDeletarClick(Sender: TObject);
@@ -153,7 +168,7 @@ begin
   if choice = mrNo then exit;
 
   modelProfessor.Delete(professor);
-  UpdateGridProfessor;
+  UpdateStringGrid;
 end;
 
 procedure TformMain.buttonProfessorEditarClick(Sender: TObject);
@@ -171,7 +186,7 @@ begin
   form.ShowModal;
   form.Free;
 
-  UpdateGridProfessor;
+  UpdateStringGrid;
 end;
 
 procedure TformMain.buttonProfessorInserirClick(Sender: TObject);
@@ -182,7 +197,7 @@ begin
   form.ShowModal;
   form.Free;
 
-  UpdateGridProfessor;
+  UpdateStringGrid;
 end;
 
 procedure TformMain.tabEstudanteHide(Sender: TObject);
@@ -215,7 +230,7 @@ begin
   gridProfessores.Cells[1, 0] := 'Nome';
   gridProfessores.Cells[2, 0] := 'CPF';
 
-  UpdateGridProfessor;
+  UpdateStringGrid;
 end;
 
 end.
