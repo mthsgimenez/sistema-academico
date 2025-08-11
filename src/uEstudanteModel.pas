@@ -14,7 +14,7 @@ type TEstudanteModel = class
     procedure Insert(aEstudante: TEstudante);
     function GetEstudantes: TObjectList<TEstudante>;
     procedure Delete(aEstudante: TEstudante);
-    function GetEstudanteByIndex(aId: Integer): TEstudante;
+    function GetEstudanteByIndex(aIndex: Integer): TEstudante;
     procedure Edit(aEstudante: TEstudante);
 end;
 
@@ -65,9 +65,9 @@ begin
   Self.Database.FDQuery.Close;
 end;
 
-function TEstudanteModel.GetEstudanteByIndex(aId: Integer): TEstudante;
+function TEstudanteModel.GetEstudanteByIndex(aIndex: Integer): TEstudante;
 begin
-  Result := Self.Estudantes[aId];
+  Result := Self.Estudantes[aIndex];
 end;
 
 function TEstudanteModel.GetEstudantes: TObjectList<TEstudante>;
