@@ -38,7 +38,7 @@ object formMain: TformMain
       Align = alClient
       TabOrder = 0
       object tabEstudante: TTabSheet
-        Caption = 'tabEstudante'
+        Caption = 'Estudantes'
         OnHide = tabEstudanteHide
         OnShow = tabEstudanteShow
         object buttonEstudanteInserir: TButton
@@ -105,7 +105,7 @@ object formMain: TformMain
         end
       end
       object tabProfessor: TTabSheet
-        Caption = 'tabProfessor'
+        Caption = 'Professores'
         ImageIndex = 1
       end
     end
