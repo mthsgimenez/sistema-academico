@@ -10,7 +10,10 @@ uses
   uProfessor in 'uProfessor.pas',
   uProfessorModel in 'uProfessorModel.pas',
   uFormProfessor in 'uFormProfessor.pas' {formProfessor},
-  uCPF in 'uCPF.pas';
+  uCPF in 'uCPF.pas',
+  uDisciplina in 'uDisciplina.pas',
+  uDisciplinaModel in 'uDisciplinaModel.pas',
+  uFormDisciplina in 'uFormDisciplina.pas' {formDisciplina};
 
 {$R *.res}
 
@@ -21,5 +24,6 @@ begin
   Application.CreateForm(TformMain, formMain);
   Application.CreateForm(TformEstudante, formEstudante);
   Application.CreateForm(TformProfessor, formProfessor);
+  Application.CreateForm(TformDisciplina, formDisciplina);
   Application.Run;
 end.

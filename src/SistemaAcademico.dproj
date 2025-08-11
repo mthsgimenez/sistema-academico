@@ -147,6 +147,12 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uCPF.pas"/>
+        <DCCReference Include="uDisciplina.pas"/>
+        <DCCReference Include="uDisciplinaModel.pas"/>
+        <DCCReference Include="uFormDisciplina.pas">
+            <Form>formDisciplina</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
