@@ -140,6 +140,7 @@
             <Form>formEstudante</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="uProfessor.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

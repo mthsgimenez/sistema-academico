@@ -6,7 +6,8 @@ uses
   uEstudante in 'uEstudante.pas',
   uDatabase in 'uDatabase.pas' {Database: TDataModule},
   uEstudanteModel in 'uEstudanteModel.pas',
-  uFormEstudante in 'uFormEstudante.pas' {formEstudante};
+  uFormEstudante in 'uFormEstudante.pas' {formEstudante},
+  uProfessor in 'uProfessor.pas';
 
 {$R *.res}
 
