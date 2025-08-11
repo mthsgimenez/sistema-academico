@@ -53,6 +53,7 @@ object formEstudante: TformEstudante
       Margins.Bottom = 0
       Align = alTop
       TabOrder = 1
+      TextHint = 'Nome'
       OnKeyDown = editEstudanteNomeKeyDown
     end
   end
