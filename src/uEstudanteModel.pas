@@ -67,6 +67,9 @@ end;
 
 function TEstudanteModel.GetEstudanteByIndex(aIndex: Integer): TEstudante;
 begin
+  if (aIndex > Self.Estudantes.Count - 1) or (aIndex < 0) then
+  raise Exception.Create('GetEstudanteByIndex: aIndex deve estar dentro dos limites da lista');
+
   Result := Self.Estudantes[aIndex];
 end;
 
