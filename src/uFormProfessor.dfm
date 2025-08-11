@@ -28,12 +28,10 @@ object formProfessor: TformProfessor
     TabOrder = 0
     ExplicitLeft = 5
     ExplicitTop = -5
-    ExplicitWidth = 624
-    ExplicitHeight = 441
     object buttonConfirmar: TButton
       AlignWithMargins = True
       Left = 31
-      Top = 102
+      Top = 112
       Width = 146
       Height = 25
       Margins.Left = 30
@@ -44,9 +42,7 @@ object formProfessor: TformProfessor
       Caption = 'Confirmar'
       TabOrder = 0
       OnClick = buttonConfirmarClick
-      ExplicitLeft = 48
-      ExplicitTop = 104
-      ExplicitWidth = 75
+      ExplicitTop = 102
     end
     object editProfessorNome: TEdit
       AlignWithMargins = True
@@ -62,27 +58,26 @@ object formProfessor: TformProfessor
       TabOrder = 1
       TextHint = 'Nome'
       OnKeyDown = editProfessorNomeKeyDown
-      ExplicitLeft = 24
-      ExplicitTop = 18
-      ExplicitWidth = 121
     end
-    object editProfessorCPF: TEdit
+    object editProfessorCPF: TMaskEdit
       AlignWithMargins = True
       Left = 31
-      Top = 54
+      Top = 64
       Width = 146
       Height = 23
+      Hint = 'CPF'
       Margins.Left = 30
-      Margins.Top = 10
+      Margins.Top = 20
       Margins.Right = 30
       Margins.Bottom = 0
       Align = alTop
+      EditMask = '!999.999.999-99;0;_'
+      MaxLength = 14
       TabOrder = 2
+      Text = ''
       TextHint = 'CPF'
       OnKeyDown = editProfessorCPFKeyDown
-      ExplicitLeft = 24
-      ExplicitTop = 64
-      ExplicitWidth = 121
+      ExplicitWidth = 145
     end
   end
 end
