@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, FireDAC.Comp.Client,
   Vcl.ComCtrls, Vcl.ExtCtrls, System.Generics.Collections, uDatabase, uEstudanteModel, uEstudante,
-  Vcl.Grids, uFormEstudante, uProfessorModel, uProfessor, uFormProfessor;
+  Vcl.Grids, uFormEstudante, uProfessorModel, uProfessor, uFormProfessor, uDisciplina, uDisciplinaModel, uFormDisciplina;
 
 type
   TformMain = class(TForm)
@@ -22,12 +22,18 @@ type
     buttonProfessorInserir: TButton;
     buttonProfessorEditar: TButton;
     buttonProfessorDeletar: TButton;
+    tabDisciplina: TTabSheet;
+    gridDisciplinas: TStringGrid;
+    buttonDisciplinaEditar: TButton;
+    buttonDisciplinaInserir: TButton;
+    buttonDisciplinaDeletar: TButton;
     procedure buttonEstudanteInserirClick(Sender: TObject);
     procedure buttonEstudanteDeletarClick(Sender: TObject);
     procedure buttonEstudanteEditarClick(Sender: TObject);
     procedure UpdateStringGrid;
     procedure UpdateGridEstudante;
     procedure UpdateGridProfessor;
+    procedure UpdateGridDisciplina;
     procedure tabEstudanteHide(Sender: TObject);
     procedure tabEstudanteShow(Sender: TObject);
     procedure tabProfessorShow(Sender: TObject);
@@ -36,12 +42,17 @@ type
     procedure buttonProfessorDeletarClick(Sender: TObject);
     procedure tabProfessorHide(Sender: TObject);
     procedure pageMainChange(Sender: TObject);
+    procedure buttonDisciplinaInserirClick(Sender: TObject);
+    procedure tabDisciplinaShow(Sender: TObject);
+    procedure tabDisciplinaHide(Sender: TObject);
+    procedure buttonDisciplinaEditarClick(Sender: TObject);
+    procedure buttonDisciplinaDeletarClick(Sender: TObject);
   private
     { Private declarations }
   public
   end;
 
-  TTab = (estudante, professor);
+  TTab = (estudante, professor, disciplina);
 
 var
   formMain: TformMain;
@@ -49,6 +60,28 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TformMain.UpdateGridDisciplina;
+var
+  disciplinas: TObjectList<TDisciplina>;
+  newRow, i: Integer;
+begin
+  i := gridDisciplinas.Row;
+  gridDisciplinas.RowCount := 1;
+  disciplinas := ModelDisciplina.GetDisciplinas;
+
+  for var disciplina in disciplinas do begin
+    newRow := gridDisciplinas.RowCount;
+    gridDisciplinas.RowCount := newRow + 1;
+    gridDisciplinas.Cells[0, newRow] := disciplina.GetId.ToString;
+    gridDisciplinas.Cells[1, newRow] := disciplina.GetNome;
+  end;
+
+  if gridDisciplinas.RowCount > 1 then gridDisciplinas.FixedRows := 1;
+  if i > gridDisciplinas.RowCount - 1 then i := i - 1;
+
+  gridDisciplinas.Row := i;
+end;
 
 procedure TformMain.UpdateGridEstudante;
 var
@@ -104,7 +137,57 @@ begin
   case tab of
     estudante: UpdateGridEstudante;
     professor: UpdateGridProfessor;
+    disciplina: UpdateGridDisciplina;
+    else raise Exception.Create('UpdateStringGrid: Menu inválido');
   end;
+end;
+
+procedure TformMain.buttonDisciplinaDeletarClick(Sender: TObject);
+var
+  i, choice: Integer;
+  disciplina: TDisciplina;
+begin
+  i := gridDisciplinas.Row - 1;
+  if i = -1 then raise Exception.Create('Nenhuma disciplina selecionada');
+
+  disciplina := ModelDisciplina.GetDisciplinaByIndex(i);
+
+  choice := MessageDlg('Deseja mesmo deletar a disciplina: ' + disciplina.GetNome + '?', TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0);
+
+  if choice = mrNo then exit;
+
+  ModelDisciplina.Delete(disciplina);
+
+  UpdateStringGrid;
+end;
+
+procedure TformMain.buttonDisciplinaEditarClick(Sender: TObject);
+var
+  form: TFormDisciplina;
+  i: Integer;
+  disciplina: TDisciplina;
+begin
+  i := gridDisciplinas.Row - 1;
+  if i = -1 then raise Exception.Create('Nenhuma disciplina selecionada');
+
+  disciplina := ModelDisciplina.GetDisciplinaByIndex(i);
+
+  form := TformDisciplina.Create(disciplina, nil);
+  form.ShowModal;
+  form.Free;
+
+  UpdateStringGrid;
+end;
+
+procedure TformMain.buttonDisciplinaInserirClick(Sender: TObject);
+var
+  form: TformDisciplina;
+begin
+  form := TformDisciplina.Create(nil, nil);
+  form.ShowModal;
+  form.Free;
+
+  UpdateStringGrid;
 end;
 
 procedure TformMain.buttonEstudanteDeletarClick(Sender: TObject);
@@ -204,6 +287,21 @@ end;
 procedure TformMain.pageMainChange(Sender: TObject);
 begin
   UpdateStringGrid;
+end;
+
+procedure TformMain.tabDisciplinaHide(Sender: TObject);
+begin
+  uDisciplinaModel.ModelDisciplina.Free;
+end;
+
+procedure TformMain.tabDisciplinaShow(Sender: TObject);
+begin
+  uDisciplinaModel.ModelDisciplina := TDisciplinaModel.Create(Database);
+
+  gridDisciplinas.Cells[0, 0] := 'Código';
+  gridDisciplinas.Cells[1, 0] := 'Nome';
+  gridDisciplinas.ColWidths[0] := 100;
+  gridDisciplinas.ColWidths[1] := gridDisciplinas.Width - 100;
 end;
 
 procedure TformMain.tabEstudanteHide(Sender: TObject);

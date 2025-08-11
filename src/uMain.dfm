@@ -139,7 +139,7 @@ object formMain: TformMain
           Margins.Right = 0
           Margins.Bottom = 0
           Align = alLeft
-          Caption = 'Adicionar'
+          Caption = 'Inserir'
           TabOrder = 1
           OnClick = buttonProfessorInserirClick
         end
@@ -172,6 +172,79 @@ object formMain: TformMain
           Caption = 'Deletar'
           TabOrder = 3
           OnClick = buttonProfessorDeletarClick
+        end
+      end
+      object tabDisciplina: TTabSheet
+        Caption = 'Disciplinas'
+        ImageIndex = 2
+        OnHide = tabDisciplinaHide
+        OnShow = tabDisciplinaShow
+        object gridDisciplinas: TStringGrid
+          AlignWithMargins = True
+          Left = 5
+          Top = 5
+          Width = 604
+          Height = 372
+          Margins.Left = 5
+          Margins.Top = 5
+          Margins.Right = 5
+          Margins.Bottom = 5
+          Align = alTop
+          ColCount = 2
+          RowCount = 2
+          TabOrder = 0
+          ExplicitLeft = 10
+          ExplicitTop = 13
+          RowHeights = (
+            24
+            24)
+        end
+        object buttonDisciplinaEditar: TButton
+          AlignWithMargins = True
+          Left = 90
+          Top = 382
+          Width = 75
+          Height = 27
+          Margins.Left = 10
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          Align = alLeft
+          Caption = 'Editar'
+          TabOrder = 1
+          OnClick = buttonDisciplinaEditarClick
+        end
+        object buttonDisciplinaInserir: TButton
+          AlignWithMargins = True
+          Left = 5
+          Top = 382
+          Width = 75
+          Height = 27
+          Margins.Left = 5
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          Align = alLeft
+          Caption = 'Inserir'
+          TabOrder = 2
+          OnClick = buttonDisciplinaInserirClick
+          ExplicitLeft = 13
+        end
+        object buttonDisciplinaDeletar: TButton
+          AlignWithMargins = True
+          Left = 534
+          Top = 382
+          Width = 75
+          Height = 27
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 5
+          Margins.Bottom = 0
+          Align = alRight
+          Caption = 'Deletar'
+          TabOrder = 3
+          OnClick = buttonDisciplinaDeletarClick
+          ExplicitLeft = 539
         end
       end
     end
