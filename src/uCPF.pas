@@ -37,35 +37,34 @@ end;
 
 function TCPF.Validate(aCPF: String): Boolean;
 var
-  firstDigit, secondDigit, soma: Integer;
+  dig10, dig11: String;
+  soma, i, resto, peso: Integer;
 begin
   Result := False;
 
   if aCPF.Length <> 11 then raise Exception.Create('CPF deve conter 11 digitos');
 
   soma := 0;
-  for var i := 0 to 8 do begin
-    try
-      soma := soma + (StrToInt(aCPF[i]) * (10 - i));
-    except
-      raise Exception.Create('O CPF deve conter somente números');
-    end;
+  peso := 10;
+  for i := 1 to 9 do begin
+    soma := soma + (StrToInt(aCPF[i]) * peso);
+    peso := peso - 1;
   end;
-  firstDigit := (soma * 10) mod 11;
+  resto := (soma * 10) mod 11;
+  if resto > 9 then dig10 := '0' else dig10 := IntToStr(resto);
 
-  if StrToInt(aCPF[9]) <> firstDigit then raise Exception.Create('CPF inválido');
+  if dig10 <> aCPF[10] then raise Exception.Create('CPF inválido');
 
   soma := 0;
-  for var i := 0 to 9 do begin
-    try
-      soma := soma + (StrToInt(aCPF[i]) * (11 - i));
-    except
-      raise Exception.Create('O CPF deve conter somente números');
-    end;
+  peso := 11;
+  for i := 1 to 10 do begin
+    soma := soma + (StrToInt(aCPF[i]) * peso);
+    peso := peso - 1;
   end;
-  secondDigit := (soma * 10) mod 11;
+  resto := (soma * 10) mod 11;
+  if resto > 9 then dig11 := '0' else dig11 := IntToStr(resto);
 
-  if StrToInt(aCPF[10]) <> secondDigit then raise Exception.Create('CPF inválido');
+  if dig11 <> aCPF[11] then raise Exception.Create('CPF inválido');
 
   Result := True;
 end;
