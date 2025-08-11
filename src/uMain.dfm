@@ -34,7 +34,7 @@ object formMain: TformMain
       Margins.Top = 0
       Margins.Right = 0
       Margins.Bottom = 0
-      ActivePage = tabProfessor
+      ActivePage = tabEstudante
       Align = alClient
       TabOrder = 0
       object tabEstudante: TTabSheet
@@ -123,7 +123,6 @@ object formMain: TformMain
           ColCount = 3
           RowCount = 2
           TabOrder = 0
-          ExplicitWidth = 596
           RowHeights = (
             24
             24)
@@ -142,9 +141,6 @@ object formMain: TformMain
           Caption = 'Adicionar'
           TabOrder = 1
           OnClick = buttonProfessorInserirClick
-          ExplicitLeft = 3
-          ExplicitTop = 381
-          ExplicitHeight = 25
         end
         object buttonProfessorEditar: TButton
           AlignWithMargins = True
@@ -160,9 +156,6 @@ object formMain: TformMain
           Caption = 'Editar'
           TabOrder = 2
           OnClick = buttonProfessorEditarClick
-          ExplicitLeft = 160
-          ExplicitTop = 381
-          ExplicitHeight = 25
         end
         object buttonProfessorDeletar: TButton
           AlignWithMargins = True
@@ -178,9 +171,6 @@ object formMain: TformMain
           Caption = 'Deletar'
           TabOrder = 3
           OnClick = buttonProfessorDeletarClick
-          ExplicitLeft = 440
-          ExplicitTop = 381
-          ExplicitHeight = 25
         end
       end
     end

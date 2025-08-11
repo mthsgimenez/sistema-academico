@@ -43,6 +43,9 @@ begin
   Result := False;
 
   if aCPF.Length <> 11 then raise Exception.Create('CPF deve conter 11 digitos');
+  for i := 1 to 11 do begin
+    if not (aCPF[i] in ['0'..'9']) then raise Exception.Create('CPF deve conter somente números');
+  end;
 
   soma := 0;
   peso := 10;
