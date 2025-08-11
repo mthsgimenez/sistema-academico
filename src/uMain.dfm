@@ -34,7 +34,7 @@ object formMain: TformMain
       Margins.Top = 0
       Margins.Right = 0
       Margins.Bottom = 0
-      ActivePage = tabEstudante
+      ActivePage = tabProfessor
       Align = alClient
       TabOrder = 0
       object tabEstudante: TTabSheet
@@ -107,6 +107,81 @@ object formMain: TformMain
       object tabProfessor: TTabSheet
         Caption = 'Professores'
         ImageIndex = 1
+        OnHide = tabProfessorHide
+        OnShow = tabProfessorShow
+        object gridProfessores: TStringGrid
+          AlignWithMargins = True
+          Left = 5
+          Top = 5
+          Width = 604
+          Height = 372
+          Margins.Left = 5
+          Margins.Top = 5
+          Margins.Right = 5
+          Margins.Bottom = 5
+          Align = alTop
+          ColCount = 3
+          RowCount = 2
+          TabOrder = 0
+          ExplicitWidth = 596
+          RowHeights = (
+            24
+            24)
+        end
+        object buttonProfessorInserir: TButton
+          AlignWithMargins = True
+          Left = 5
+          Top = 382
+          Width = 75
+          Height = 27
+          Margins.Left = 5
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          Align = alLeft
+          Caption = 'Adicionar'
+          TabOrder = 1
+          OnClick = buttonProfessorInserirClick
+          ExplicitLeft = 3
+          ExplicitTop = 381
+          ExplicitHeight = 25
+        end
+        object buttonProfessorEditar: TButton
+          AlignWithMargins = True
+          Left = 90
+          Top = 382
+          Width = 75
+          Height = 27
+          Margins.Left = 10
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          Align = alLeft
+          Caption = 'Editar'
+          TabOrder = 2
+          OnClick = buttonProfessorEditarClick
+          ExplicitLeft = 160
+          ExplicitTop = 381
+          ExplicitHeight = 25
+        end
+        object buttonProfessorDeletar: TButton
+          AlignWithMargins = True
+          Left = 534
+          Top = 382
+          Width = 75
+          Height = 27
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 5
+          Margins.Bottom = 0
+          Align = alRight
+          Caption = 'Deletar'
+          TabOrder = 3
+          OnClick = buttonProfessorDeletarClick
+          ExplicitLeft = 440
+          ExplicitTop = 381
+          ExplicitHeight = 25
+        end
       end
     end
   end

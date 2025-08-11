@@ -141,6 +141,11 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uProfessor.pas"/>
+        <DCCReference Include="uProfessorModel.pas"/>
+        <DCCReference Include="uFormProfessor.pas">
+            <Form>formProfessor</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
