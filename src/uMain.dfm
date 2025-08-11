@@ -37,6 +37,7 @@ object formMain: TformMain
       ActivePage = tabEstudante
       Align = alClient
       TabOrder = 0
+      OnChange = pageMainChange
       object tabEstudante: TTabSheet
         Caption = 'Estudantes'
         OnHide = tabEstudanteHide

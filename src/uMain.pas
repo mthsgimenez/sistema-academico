@@ -35,6 +35,7 @@ type
     procedure buttonProfessorEditarClick(Sender: TObject);
     procedure buttonProfessorDeletarClick(Sender: TObject);
     procedure tabProfessorHide(Sender: TObject);
+    procedure pageMainChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -197,6 +198,11 @@ begin
   form.ShowModal;
   form.Free;
 
+  UpdateStringGrid;
+end;
+
+procedure TformMain.pageMainChange(Sender: TObject);
+begin
   UpdateStringGrid;
 end;
 
