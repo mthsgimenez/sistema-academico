@@ -1,7 +1,7 @@
 object formProfessor: TformProfessor
   Left = 0
   Top = 0
-  Caption = 'formProfessor'
+  Caption = 'Professor'
   ClientHeight = 155
   ClientWidth = 208
   Color = clBtnFace
@@ -26,8 +26,6 @@ object formProfessor: TformProfessor
     Caption = 'panelProfessor'
     ShowCaption = False
     TabOrder = 0
-    ExplicitLeft = 5
-    ExplicitTop = -5
     object buttonConfirmar: TButton
       AlignWithMargins = True
       Left = 31
@@ -42,7 +40,6 @@ object formProfessor: TformProfessor
       Caption = 'Confirmar'
       TabOrder = 0
       OnClick = buttonConfirmarClick
-      ExplicitTop = 102
     end
     object editProfessorNome: TEdit
       AlignWithMargins = True
@@ -77,7 +74,6 @@ object formProfessor: TformProfessor
       Text = ''
       TextHint = 'CPF'
       OnKeyDown = editProfessorCPFKeyDown
-      ExplicitWidth = 145
     end
   end
 end
