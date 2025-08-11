@@ -39,8 +39,9 @@ implementation
 procedure TformMain.UpdateStringGrid;
 var
   estudantes: TObjectList<TEstudante>;
-  newRow: Integer;
+  newRow, i: Integer;
 begin
+  i := gridEstudantes.Row;
   gridEstudantes.RowCount := 1;
   estudantes := ModelEstudante.GetEstudantes;
 
@@ -52,6 +53,9 @@ begin
   end;
 
   if gridEstudantes.RowCount > 1 then gridEstudantes.FixedRows := 1;
+  if i > gridEstudantes.RowCount - 1 then i := i - 1;
+
+  gridEstudantes.Row := i;
 end;
 
 procedure TformMain.buttonEstudanteDeletarClick(Sender: TObject);
