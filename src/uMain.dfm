@@ -34,7 +34,7 @@ object formMain: TformMain
       Margins.Top = 0
       Margins.Right = 0
       Margins.Bottom = 0
-      ActivePage = tabEstudante
+      ActivePage = tabProfessor
       Align = alClient
       TabOrder = 0
       OnChange = pageMainChange
@@ -122,6 +122,7 @@ object formMain: TformMain
           Margins.Bottom = 5
           Align = alTop
           ColCount = 3
+          FixedCols = 2
           RowCount = 2
           TabOrder = 0
           RowHeights = (
@@ -193,8 +194,6 @@ object formMain: TformMain
           ColCount = 2
           RowCount = 2
           TabOrder = 0
-          ExplicitLeft = 10
-          ExplicitTop = 13
           RowHeights = (
             24
             24)
@@ -228,7 +227,6 @@ object formMain: TformMain
           Caption = 'Inserir'
           TabOrder = 2
           OnClick = buttonDisciplinaInserirClick
-          ExplicitLeft = 13
         end
         object buttonDisciplinaDeletar: TButton
           AlignWithMargins = True
@@ -244,7 +242,6 @@ object formMain: TformMain
           Caption = 'Deletar'
           TabOrder = 3
           OnClick = buttonDisciplinaDeletarClick
-          ExplicitLeft = 539
         end
       end
     end

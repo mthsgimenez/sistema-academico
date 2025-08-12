@@ -334,6 +334,10 @@ begin
   gridProfessores.Cells[1, 0] := 'Nome';
   gridProfessores.Cells[2, 0] := 'CPF';
 
+  gridProfessores.ColWidths[0] := 100;
+  gridProfessores.ColWidths[1] := Round((gridEstudantes.Width - 100) / 2);
+  gridProfessores.ColWidths[2] := Round((gridEstudantes.Width - 100) / 2);
+
   UpdateStringGrid;
 end;
 
