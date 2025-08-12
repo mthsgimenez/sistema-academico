@@ -13,7 +13,9 @@ uses
   uCPF in 'uCPF.pas',
   uDisciplina in 'uDisciplina.pas',
   uDisciplinaModel in 'uDisciplinaModel.pas',
-  uFormDisciplina in 'uFormDisciplina.pas' {formDisciplina};
+  uFormDisciplina in 'uFormDisciplina.pas' {formDisciplina},
+  uTurma in 'uTurma.pas',
+  uTurmaModel in 'uTurmaModel.pas';
 
 {$R *.res}
 

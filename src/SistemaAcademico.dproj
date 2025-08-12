@@ -153,6 +153,8 @@
             <Form>formDisciplina</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="uTurma.pas"/>
+        <DCCReference Include="uTurmaModel.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
