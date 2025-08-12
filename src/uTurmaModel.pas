@@ -14,8 +14,13 @@ uses
       ModelProfessor: TProfessorModel;
       ModelDisciplina: TDisciplinaModel;
     public
-      function GetTurmas: TObjectList<TTurma>;
       constructor Create(aDatabase: TDatabase; aProfessorModel: TProfessorModel; aDisciplinaModel: TDisciplinaModel);
+      destructor Destroy;
+      procedure Insert(aTurma: TTurma);
+      procedure Delete(aTurma: TTurma);
+      function GetTurmas: TObjectList<TTurma>;
+      function GetTurmaByIndex(aIndex: Integer): TTurma;
+      procedure Edit(aTurma: TTurma);
   end;
 
   var ModelTurma: TTurmaModel;
@@ -67,9 +72,53 @@ begin
 
 end;
 
+procedure TTurmaModel.Delete(aTurma: TTurma);
+begin
+  Self.Turmas.Remove(aTurma);
+
+  Self.Database.FDQuery.SQL.Text := 'UPDATE turmas SET ativo=false WHERE id=' + aTurma.GetId.ToString;
+  Self.Database.FDQuery.ExecSQL;
+  Self.Database.FDQuery.Close;
+end;
+
+destructor TTurmaModel.Destroy;
+begin
+  Self.Turmas.Free;
+  inherited;
+end;
+
+procedure TTurmaModel.Edit(aTurma: TTurma);
+begin
+  Self.Database.FDQuery.SQL.Text := 'UPDATE turmas SET id_professor=' + aTurma.GetProfessor.GetId.ToString + ', id_disciplina=' + aTurma.GetDisciplina.GetId.ToString + ' WHERE id=' + aTurma.GetId.ToString;
+  Self.Database.FDQuery.ExecSQL;
+  Self.Database.FDQuery.Close;
+end;
+
+function TTurmaModel.GetTurmaByIndex(aIndex: Integer): TTurma;
+begin
+  if (aIndex < 0) or (aIndex > Self.Turmas.Count - 1) then raise Exception.Create('GetTurmaByIndex: aIndex deve estar dentro dos limites da lista');
+
+  Result := Self.Turmas[aIndex];
+end;
+
 function TTurmaModel.GetTurmas: TObjectList<TTurma>;
 begin
   Result := Self.Turmas;
+end;
+
+procedure TTurmaModel.Insert(aTurma: TTurma);
+var
+  id: Integer;
+begin
+  Self.Database.FDQuery.SQL.Text := 'INSERT INTO turmas (id_professor, id_disciplina) VALUES (' + aTurma.GetProfessor.GetId.ToString + ', ' + aTurma.GetDisciplina.GetId.ToString + ') RETURNING id';
+  Self.Database.FDQuery.Open;
+
+  id := Self.Database.FDQuery.FieldByName('id').AsInteger;
+
+  Self.Database.FDQuery.Close;
+
+  aTurma.SetId(id);
+  Self.Turmas.Add(aTurma);
 end;
 
 end.
