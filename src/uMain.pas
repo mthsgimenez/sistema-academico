@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, FireDAC.Comp.Client,
   Vcl.ComCtrls, Vcl.ExtCtrls, System.Generics.Collections, uDatabase, uEstudanteModel, uEstudante,
   Vcl.Grids, uFormEstudante, uProfessorModel, uProfessor, uFormProfessor, uDisciplina, uDisciplinaModel, uFormDisciplina,
-  uTurma, uTurmaModel;
+  uTurma, uTurmaModel, uFormTurma;
 
 type
   TformMain = class(TForm)
@@ -55,6 +55,7 @@ type
     procedure tabTurmaShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure buttonTurmaInserirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -323,6 +324,17 @@ var
   form: TFormProfessor;
 begin
   form := TFormProfessor.Create(nil, nil);
+  form.ShowModal;
+  form.Free;
+
+  UpdateStringGrid;
+end;
+
+procedure TformMain.buttonTurmaInserirClick(Sender: TObject);
+var
+  form: TFormTurma;
+begin
+  form := TFormTurma.Create(nil, nil);
   form.ShowModal;
   form.Free;
 

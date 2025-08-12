@@ -281,6 +281,7 @@ object formMain: TformMain
           Align = alLeft
           Caption = 'Inserir'
           TabOrder = 1
+          OnClick = buttonTurmaInserirClick
           ExplicitLeft = 13
         end
         object buttonTurmaEditar: TButton
