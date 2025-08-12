@@ -15,6 +15,7 @@ uses uDatabase, uProfessor, System.SysUtils, System.Generics.Collections, uCPF;
       function GetProfessores: TObjectList<TProfessor>;
       procedure Delete(aProfessor: TProfessor);
       function GetProfessorByIndex(aIndex: Integer): TProfessor;
+      function GetProfessorById(aId: Integer): TProfessor;
       procedure Edit(aProfessor: TProfessor);
   end;
 
@@ -78,6 +79,20 @@ begin
   Self.Database.FDQuery.SQL.Text := 'UPDATE professores SET nome=' + QuotedStr(aProfessor.GetNome) + ', cpf=' + QuotedStr(aProfessor.GetCpf) + ' WHERE id=' + aProfessor.GetId.ToString;
   Self.Database.FDQuery.ExecSQL;
   Self.Database.FDQuery.Close;
+end;
+
+function TProfessorModel.GetProfessorById(aId: Integer): TProfessor;
+begin
+  if aId < 1 then raise Exception.Create('GetProfessorById: Id inválido');
+
+  for var professor in Self.Professores do begin
+    if professor.GetId = aId then begin
+      Result := professor;
+      Exit;
+    end;
+  end;
+
+  raise Exception.Create('Professor com id: ' + aId.ToString + ' não encontrado');
 end;
 
 function TProfessorModel.GetProfessorByIndex(aIndex: Integer): TProfessor;
