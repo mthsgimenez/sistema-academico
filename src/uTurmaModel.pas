@@ -14,8 +14,11 @@ uses
       ModelProfessor: TProfessorModel;
       ModelDisciplina: TDisciplinaModel;
     public
+      function GetTurmas: TObjectList<TTurma>;
       constructor Create(aDatabase: TDatabase; aProfessorModel: TProfessorModel; aDisciplinaModel: TDisciplinaModel);
   end;
+
+  var ModelTurma: TTurmaModel;
 
 implementation
 
@@ -62,6 +65,11 @@ begin
   end;
   Self.Database.FDQuery.Close;
 
+end;
+
+function TTurmaModel.GetTurmas: TObjectList<TTurma>;
+begin
+  Result := Self.Turmas;
 end;
 
 end.
