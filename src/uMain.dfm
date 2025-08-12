@@ -309,6 +309,7 @@ object formMain: TformMain
           Align = alRight
           Caption = 'Deletar'
           TabOrder = 3
+          OnClick = buttonTurmaDeletarClick
         end
       end
     end

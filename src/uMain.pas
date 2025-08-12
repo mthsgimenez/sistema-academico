@@ -57,6 +57,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure buttonTurmaInserirClick(Sender: TObject);
     procedure buttonTurmaEditarClick(Sender: TObject);
+    procedure buttonTurmaDeletarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -328,6 +329,24 @@ begin
   form.ShowModal;
   form.Free;
 
+  UpdateStringGrid;
+end;
+
+procedure TformMain.buttonTurmaDeletarClick(Sender: TObject);
+var
+  i, choice: Integer;
+  turma: TTurma;
+begin
+  i := gridTurmas.Row - 1;
+  if i = -1 then raise Exception.Create('Nenhuma turma selecionada');
+
+  turma := ModelTurma.GetTurmaByIndex(i);
+
+  choice := MessageDlg('Deseja mesmo deletar a turma: ' + turma.GetDisciplina.GetNome + '. Prof: ' + turma.GetProfessor.GetNome + '?', TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0);
+
+  if choice = mrNo then exit;
+
+  ModelTurma.Delete(turma);
   UpdateStringGrid;
 end;
 
