@@ -16,6 +16,7 @@ type
     function GetDisciplinas: TObjectList<TDisciplina>;
     procedure Delete(aDisciplina: TDisciplina);
     function GetDisciplinaByIndex(aIndex: Integer): TDisciplina;
+    function GetDisciplinaById(aId: Integer): TDisciplina;
     procedure Edit(aDisciplina: TDisciplina);
   end;
 
@@ -68,6 +69,20 @@ begin
   Self.Database.FDQuery.SQL.Text := 'UPDATE disciplinas SET nome=' + QuotedStr(aDisciplina.GetNome) + ' WHERE id=' + aDisciplina.GetId.ToString;
   Self.Database.FDQuery.ExecSQL;
   Self.Database.FDQuery.Close;
+end;
+
+function TDisciplinaModel.GetDisciplinaById(aId: Integer): TDisciplina;
+begin
+  if aId < 1 then raise Exception.Create('GetDisciplinaById: Id inválido');
+
+  for var disciplina in Self.Disciplinas do begin
+    if disciplina.GetId = aId then begin
+      Result := disciplina;
+      Exit;
+    end;
+  end;
+
+  raise Exception.Create('Disciplina com id: ' + aId.ToString + ' não encontrada');
 end;
 
 function TDisciplinaModel.GetDisciplinaByIndex(aIndex: Integer): TDisciplina;
