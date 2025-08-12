@@ -10,6 +10,7 @@ object formTurma: TformTurma
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnShow = FormShow
   TextHeight = 15
   object panelTurma: TPanel
     AlignWithMargins = True
@@ -124,6 +125,7 @@ object formTurma: TformTurma
       Font.Style = []
       ParentFont = False
       TabOrder = 2
+      OnClick = buttonConfirmarClick
       ExplicitLeft = 96
       ExplicitTop = 176
       ExplicitWidth = 97
