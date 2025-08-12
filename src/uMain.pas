@@ -56,6 +56,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure buttonTurmaInserirClick(Sender: TObject);
+    procedure buttonTurmaEditarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -324,6 +325,24 @@ var
   form: TFormProfessor;
 begin
   form := TFormProfessor.Create(nil, nil);
+  form.ShowModal;
+  form.Free;
+
+  UpdateStringGrid;
+end;
+
+procedure TformMain.buttonTurmaEditarClick(Sender: TObject);
+var
+  form: TFormTurma;
+  i: Integer;
+  turma: TTurma;
+begin
+  i := gridTurmas.Row - 1;
+  if i = -1 then raise Exception.Create('Nenhuma turma selecionada');
+
+  turma := ModelTurma.GetTurmaByIndex(i);
+
+  form := TFormTurma.Create(turma, nil);
   form.ShowModal;
   form.Free;
 

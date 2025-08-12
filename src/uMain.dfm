@@ -262,8 +262,6 @@ object formMain: TformMain
           FixedCols = 2
           RowCount = 2
           TabOrder = 0
-          ExplicitLeft = 10
-          ExplicitTop = 13
           RowHeights = (
             24
             24)
@@ -282,7 +280,6 @@ object formMain: TformMain
           Caption = 'Inserir'
           TabOrder = 1
           OnClick = buttonTurmaInserirClick
-          ExplicitLeft = 13
         end
         object buttonTurmaEditar: TButton
           AlignWithMargins = True
@@ -297,7 +294,7 @@ object formMain: TformMain
           Align = alLeft
           Caption = 'Editar'
           TabOrder = 2
-          ExplicitLeft = 98
+          OnClick = buttonTurmaEditarClick
         end
         object buttonTurmaDeletar: TButton
           AlignWithMargins = True
@@ -312,7 +309,6 @@ object formMain: TformMain
           Align = alRight
           Caption = 'Deletar'
           TabOrder = 3
-          ExplicitLeft = 539
         end
       end
     end
