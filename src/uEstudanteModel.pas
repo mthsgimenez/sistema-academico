@@ -27,6 +27,8 @@ implementation
 constructor TEstudanteModel.Create(aDatabase: TDatabase);
 var estudante: TEstudante;
 begin
+  if aDatabase = nil then raise Exception.Create('TEstudanteModel.Create: aDatabase não pode ser nulo');
+
   Self.Database := aDatabase;
 
   Self.Estudantes := TObjectList<TEstudante>.Create;

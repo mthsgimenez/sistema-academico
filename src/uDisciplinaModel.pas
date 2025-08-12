@@ -30,6 +30,8 @@ constructor TDisciplinaModel.Create(aDatabase: TDatabase);
 var
   disciplina: TDisciplina;
 begin
+  if aDatabase = nil then raise Exception.Create('TDisciplinaModel.Create: aDatabase não pode ser nulo');
+
   Self.Database := aDatabase;
 
   Self.Disciplinas := TObjectList<TDisciplina>.Create;

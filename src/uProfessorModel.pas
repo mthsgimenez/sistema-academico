@@ -31,6 +31,8 @@ var
   id: Integer;
   cpf: TCPF;
 begin
+  if aDatabase = nil then raise Exception.Create('TProfessorModel.Create: aDatabase não pode ser nulo');
+
   Self.Database := aDatabase;
 
   Self.Professores := TObjectList<TProfessor>.Create;
