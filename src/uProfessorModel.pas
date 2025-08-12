@@ -117,6 +117,8 @@ begin
 
   aProfessor.SetId(id);
   Self.Professores.Add(aProfessor);
+
+  Self.Database.FDQuery.Close;
 end;
 
 end.
