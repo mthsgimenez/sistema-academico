@@ -11,6 +11,8 @@ object formMain: TformMain
   Font.Name = 'Segoe UI'
   Font.Style = []
   Position = poDesigned
+  OnClose = FormClose
+  OnCreate = FormCreate
   TextHeight = 15
   object panelMain: TPanel
     AlignWithMargins = True
@@ -34,13 +36,12 @@ object formMain: TformMain
       Margins.Top = 0
       Margins.Right = 0
       Margins.Bottom = 0
-      ActivePage = tabProfessor
+      ActivePage = tabTurma
       Align = alClient
       TabOrder = 0
       OnChange = pageMainChange
       object tabEstudante: TTabSheet
         Caption = 'Estudantes'
-        OnHide = tabEstudanteHide
         OnShow = tabEstudanteShow
         object buttonEstudanteInserir: TButton
           AlignWithMargins = True
@@ -108,7 +109,6 @@ object formMain: TformMain
       object tabProfessor: TTabSheet
         Caption = 'Professores'
         ImageIndex = 1
-        OnHide = tabProfessorHide
         OnShow = tabProfessorShow
         object gridProfessores: TStringGrid
           AlignWithMargins = True
@@ -178,7 +178,6 @@ object formMain: TformMain
       object tabDisciplina: TTabSheet
         Caption = 'Disciplinas'
         ImageIndex = 2
-        OnHide = tabDisciplinaHide
         OnShow = tabDisciplinaShow
         object gridDisciplinas: TStringGrid
           AlignWithMargins = True
@@ -242,6 +241,77 @@ object formMain: TformMain
           Caption = 'Deletar'
           TabOrder = 3
           OnClick = buttonDisciplinaDeletarClick
+        end
+      end
+      object tabTurma: TTabSheet
+        Caption = 'Turma'
+        ImageIndex = 3
+        OnShow = tabTurmaShow
+        object gridTurmas: TStringGrid
+          AlignWithMargins = True
+          Left = 5
+          Top = 5
+          Width = 604
+          Height = 372
+          Margins.Left = 5
+          Margins.Top = 5
+          Margins.Right = 5
+          Margins.Bottom = 5
+          Align = alTop
+          ColCount = 3
+          FixedCols = 2
+          RowCount = 2
+          TabOrder = 0
+          ExplicitLeft = 10
+          ExplicitTop = 13
+          RowHeights = (
+            24
+            24)
+        end
+        object buttonTurmaInserir: TButton
+          AlignWithMargins = True
+          Left = 5
+          Top = 382
+          Width = 75
+          Height = 27
+          Margins.Left = 5
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          Align = alLeft
+          Caption = 'Inserir'
+          TabOrder = 1
+          ExplicitLeft = 13
+        end
+        object buttonTurmaEditar: TButton
+          AlignWithMargins = True
+          Left = 90
+          Top = 382
+          Width = 75
+          Height = 27
+          Margins.Left = 10
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          Align = alLeft
+          Caption = 'Editar'
+          TabOrder = 2
+          ExplicitLeft = 98
+        end
+        object buttonTurmaDeletar: TButton
+          AlignWithMargins = True
+          Left = 534
+          Top = 382
+          Width = 75
+          Height = 27
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 5
+          Margins.Bottom = 0
+          Align = alRight
+          Caption = 'Deletar'
+          TabOrder = 3
+          ExplicitLeft = 539
         end
       end
     end

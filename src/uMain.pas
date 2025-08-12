@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, FireDAC.Comp.Client,
   Vcl.ComCtrls, Vcl.ExtCtrls, System.Generics.Collections, uDatabase, uEstudanteModel, uEstudante,
-  Vcl.Grids, uFormEstudante, uProfessorModel, uProfessor, uFormProfessor, uDisciplina, uDisciplinaModel, uFormDisciplina;
+  Vcl.Grids, uFormEstudante, uProfessorModel, uProfessor, uFormProfessor, uDisciplina, uDisciplinaModel, uFormDisciplina,
+  uTurma, uTurmaModel;
 
 type
   TformMain = class(TForm)
@@ -27,6 +28,11 @@ type
     buttonDisciplinaEditar: TButton;
     buttonDisciplinaInserir: TButton;
     buttonDisciplinaDeletar: TButton;
+    tabTurma: TTabSheet;
+    gridTurmas: TStringGrid;
+    buttonTurmaInserir: TButton;
+    buttonTurmaEditar: TButton;
+    buttonTurmaDeletar: TButton;
     procedure buttonEstudanteInserirClick(Sender: TObject);
     procedure buttonEstudanteDeletarClick(Sender: TObject);
     procedure buttonEstudanteEditarClick(Sender: TObject);
@@ -34,25 +40,27 @@ type
     procedure UpdateGridEstudante;
     procedure UpdateGridProfessor;
     procedure UpdateGridDisciplina;
-    procedure tabEstudanteHide(Sender: TObject);
+    procedure UpdateGridTurma;
+    procedure AdjustGridColumns(aGrid: TStringGrid; aColumnHeaders: Array of String);
     procedure tabEstudanteShow(Sender: TObject);
     procedure tabProfessorShow(Sender: TObject);
     procedure buttonProfessorInserirClick(Sender: TObject);
     procedure buttonProfessorEditarClick(Sender: TObject);
     procedure buttonProfessorDeletarClick(Sender: TObject);
-    procedure tabProfessorHide(Sender: TObject);
     procedure pageMainChange(Sender: TObject);
     procedure buttonDisciplinaInserirClick(Sender: TObject);
     procedure tabDisciplinaShow(Sender: TObject);
-    procedure tabDisciplinaHide(Sender: TObject);
     procedure buttonDisciplinaEditarClick(Sender: TObject);
     procedure buttonDisciplinaDeletarClick(Sender: TObject);
+    procedure tabTurmaShow(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
   end;
 
-  TTab = (estudante, professor, disciplina);
+  TTab = (estudante, professor, disciplina, turma);
 
 var
   formMain: TformMain;
@@ -128,6 +136,29 @@ begin
   gridProfessores.Row := i;
 end;
 
+procedure TformMain.UpdateGridTurma;
+var
+  turmas: TObjectList<TTurma>;
+  newRow, i: Integer;
+begin
+  i := gridTurmas.Row;
+  gridTurmas.RowCount := 1;
+  turmas := ModelTurma.GetTurmas;
+
+  for var turma in turmas do begin
+    newRow := gridTurmas.RowCount;
+    gridTurmas.RowCount := newRow + 1;
+    gridTurmas.Cells[0, newRow] := turma.GetId.ToString;
+    gridTurmas.Cells[1, newRow] := turma.GetDisciplina.GetNome;
+    gridTurmas.Cells[2, newRow] := turma.GetProfessor.GetNome;
+  end;
+
+  if gridTurmas.RowCount > 1 then gridTurmas.FixedRows := 1;
+  if i > gridTurmas.RowCount - 1 then i := i - 1;
+
+  gridTurmas.Row := i;
+end;
+
 procedure TformMain.UpdateStringGrid;
 var
   tab: TTab;
@@ -138,7 +169,21 @@ begin
     estudante: UpdateGridEstudante;
     professor: UpdateGridProfessor;
     disciplina: UpdateGridDisciplina;
+    turma: UpdateGridTurma;
     else raise Exception.Create('UpdateStringGrid: Menu inválido');
+  end;
+end;
+
+procedure TformMain.AdjustGridColumns(aGrid: TStringGrid;
+  aColumnHeaders: array of String);
+begin
+  for var i := 0 to Length(aColumnHeaders) - 1 do begin
+    aGrid.Cells[i, 0] := aColumnHeaders[i];
+  end;
+
+  aGrid.ColWidths[0] := 100;
+  for var i := 1 to Length(aColumnHeaders) - 1 do begin
+    aGrid.ColWidths[i] := Round((aGrid.Width - 100) / (i + 1));
   end;
 end;
 
@@ -284,59 +329,51 @@ begin
   UpdateStringGrid;
 end;
 
+procedure TformMain.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  uDisciplinaModel.ModelDisciplina.Free;
+  uEstudanteModel.ModelEstudante.Free;
+  uProfessorModel.ModelProfessor.Free;
+  uTurmaModel.ModelTurma.Free;
+end;
+
+procedure TformMain.FormCreate(Sender: TObject);
+begin
+  uDisciplinaModel.ModelDisciplina := TDisciplinaModel.Create(Database);
+  uEstudanteModel.ModelEstudante := TEstudanteModel.Create(Database);
+  uProfessorModel.ModelProfessor := TProfessorModel.Create(Database);
+  uTurmaModel.ModelTurma := TTurmaModel.Create(Database, ModelProfessor, ModelDisciplina);
+end;
+
 procedure TformMain.pageMainChange(Sender: TObject);
 begin
   UpdateStringGrid;
 end;
 
-procedure TformMain.tabDisciplinaHide(Sender: TObject);
-begin
-  uDisciplinaModel.ModelDisciplina.Free;
-end;
-
 procedure TformMain.tabDisciplinaShow(Sender: TObject);
 begin
-  uDisciplinaModel.ModelDisciplina := TDisciplinaModel.Create(Database);
-
-  gridDisciplinas.Cells[0, 0] := 'Código';
-  gridDisciplinas.Cells[1, 0] := 'Nome';
-  gridDisciplinas.ColWidths[0] := 100;
-  gridDisciplinas.ColWidths[1] := gridDisciplinas.Width - 100;
-end;
-
-procedure TformMain.tabEstudanteHide(Sender: TObject);
-begin
-  uEstudanteModel.ModelEstudante.Free;
-end;
-
-procedure TformMain.tabEstudanteShow(Sender: TObject);
-begin
-  uEstudanteModel.ModelEstudante := TEstudanteModel.Create(Database);
-
-  gridEstudantes.Cells[0, 0] := 'Código';
-  gridEstudantes.Cells[1, 0] := 'Nome';
-  gridEstudantes.ColWidths[0] := 100;
-  gridEstudantes.ColWidths[1] := gridEstudantes.Width - 100;
+  AdjustGridColumns(gridDisciplinas, ['Código', 'Nome']);
 
   UpdateStringGrid;
 end;
 
-procedure TformMain.tabProfessorHide(Sender: TObject);
+procedure TformMain.tabEstudanteShow(Sender: TObject);
 begin
-  uProfessorModel.ModelProfessor.Free;
+  AdjustGridColumns(gridEstudantes, ['Código', 'Nome']);
+
+  UpdateStringGrid;
 end;
 
 procedure TformMain.tabProfessorShow(Sender: TObject);
 begin
-  uProfessorModel.ModelProfessor := TProfessorModel.Create(Database);
+  AdjustGridColumns(gridProfessores, ['Código', 'Nome', 'CPF']);
 
-  gridProfessores.Cells[0, 0] := 'Código';
-  gridProfessores.Cells[1, 0] := 'Nome';
-  gridProfessores.Cells[2, 0] := 'CPF';
+  UpdateStringGrid;
+end;
 
-  gridProfessores.ColWidths[0] := 100;
-  gridProfessores.ColWidths[1] := Round((gridEstudantes.Width - 100) / 2);
-  gridProfessores.ColWidths[2] := Round((gridEstudantes.Width - 100) / 2);
+procedure TformMain.tabTurmaShow(Sender: TObject);
+begin
+  AdjustGridColumns(gridTurmas, ['Código', 'Professor', 'Disciplina']);
 
   UpdateStringGrid;
 end;
