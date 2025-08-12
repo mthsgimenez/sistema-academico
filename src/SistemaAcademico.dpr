@@ -15,7 +15,8 @@ uses
   uDisciplinaModel in 'uDisciplinaModel.pas',
   uFormDisciplina in 'uFormDisciplina.pas' {formDisciplina},
   uTurma in 'uTurma.pas',
-  uTurmaModel in 'uTurmaModel.pas';
+  uTurmaModel in 'uTurmaModel.pas',
+  uFormTurma in 'uFormTurma.pas' {formTurma};
 
 {$R *.res}
 
@@ -27,5 +28,6 @@ begin
   Application.CreateForm(TformEstudante, formEstudante);
   Application.CreateForm(TformProfessor, formProfessor);
   Application.CreateForm(TformDisciplina, formDisciplina);
+  Application.CreateForm(TformTurma, formTurma);
   Application.Run;
 end.

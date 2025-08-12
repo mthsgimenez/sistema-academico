@@ -155,6 +155,10 @@
         </DCCReference>
         <DCCReference Include="uTurma.pas"/>
         <DCCReference Include="uTurmaModel.pas"/>
+        <DCCReference Include="uFormTurma.pas">
+            <Form>formTurma</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
