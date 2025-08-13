@@ -15,6 +15,7 @@ type TEstudanteModel = class
     function GetEstudantes: TObjectList<TEstudante>;
     procedure Delete(aEstudante: TEstudante);
     function GetEstudanteByIndex(aIndex: Integer): TEstudante;
+    function GetEstudanteById(aId: Integer): TEstudante;
     procedure Edit(aEstudante: TEstudante);
 end;
 
@@ -65,6 +66,20 @@ begin
   Self.Database.FDQuery.SQL.Text := 'UPDATE estudantes SET nome=' + QuotedStr(aEstudante.GetNome) + 'WHERE id=' + aEstudante.GetId.ToString;
   Self.Database.FDQuery.ExecSQL;
   Self.Database.FDQuery.Close;
+end;
+
+function TEstudanteModel.GetEstudanteById(aId: Integer): TEstudante;
+begin
+  if aId < 1 then raise Exception.Create('GetEstudanteById: Id inválido');
+
+  for var estudante in Self.Estudantes do begin
+    if estudante.GetId = aId then begin
+      Result := estudante;
+      Exit;
+    end;
+  end;
+
+  raise Exception.Create('Estudante com id: ' + aId.ToString + ' não encontrado');
 end;
 
 function TEstudanteModel.GetEstudanteByIndex(aIndex: Integer): TEstudante;
