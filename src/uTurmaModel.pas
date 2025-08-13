@@ -20,6 +20,7 @@ uses
       procedure Delete(aTurma: TTurma);
       function GetTurmas: TObjectList<TTurma>;
       function GetTurmaByIndex(aIndex: Integer): TTurma;
+      function GetTurmaById(aId: Integer): TTurma;
       procedure Edit(aTurma: TTurma);
   end;
 
@@ -92,6 +93,20 @@ begin
   Self.Database.FDQuery.SQL.Text := 'UPDATE turmas SET id_professor=' + aTurma.GetProfessor.GetId.ToString + ', id_disciplina=' + aTurma.GetDisciplina.GetId.ToString + ' WHERE id=' + aTurma.GetId.ToString;
   Self.Database.FDQuery.ExecSQL;
   Self.Database.FDQuery.Close;
+end;
+
+function TTurmaModel.GetTurmaById(aId: Integer): TTurma;
+begin
+  if aId < 1 then raise Exception.Create('GetTurmaById: Id inválido');
+
+  for var turma in Self.Turmas do begin
+    if turma.GetId = aId then begin
+      Result := turma;
+      Exit;
+    end;
+  end;
+
+  raise Exception.Create('Turma com id: ' + aId.ToString + ' não encontrado');
 end;
 
 function TTurmaModel.GetTurmaByIndex(aIndex: Integer): TTurma;
