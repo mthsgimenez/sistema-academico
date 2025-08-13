@@ -36,7 +36,7 @@ object formMain: TformMain
       Margins.Top = 0
       Margins.Right = 0
       Margins.Bottom = 0
-      ActivePage = tabMatricula
+      ActivePage = tabEstudante
       Align = alClient
       TabOrder = 0
       OnChange = pageMainChange
@@ -104,7 +104,6 @@ object formMain: TformMain
           RowCount = 2
           ScrollBars = ssVertical
           TabOrder = 3
-          ExplicitTop = 387
         end
       end
       object tabProfessor: TTabSheet
@@ -332,8 +331,6 @@ object formMain: TformMain
           FixedCols = 2
           RowCount = 2
           TabOrder = 0
-          ExplicitLeft = 10
-          ExplicitTop = 13
           RowHeights = (
             24
             24)
@@ -352,7 +349,6 @@ object formMain: TformMain
           Caption = 'Inserir'
           TabOrder = 1
           OnClick = buttonMatriculaInserirClick
-          ExplicitLeft = 13
         end
         object buttonMatriculaEditar: TButton
           AlignWithMargins = True
@@ -368,7 +364,6 @@ object formMain: TformMain
           Caption = 'Editar'
           TabOrder = 2
           OnClick = buttonMatriculaEditarClick
-          ExplicitLeft = 98
         end
         object buttonMatriculaDeletar: TButton
           AlignWithMargins = True
@@ -384,7 +379,6 @@ object formMain: TformMain
           Caption = 'Deletar'
           TabOrder = 3
           OnClick = buttonMatriculaDeletarClick
-          ExplicitLeft = 539
         end
       end
     end

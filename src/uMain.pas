@@ -226,7 +226,7 @@ begin
 
   aGrid.ColWidths[0] := 100;
   for var i := 1 to Length(aColumnHeaders) - 1 do begin
-    aGrid.ColWidths[i] := Round((aGrid.Width - 100) / (i + 1));
+    aGrid.ColWidths[i] := Round((aGrid.Width) / (i + 1));
   end;
 end;
 
