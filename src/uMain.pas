@@ -66,6 +66,7 @@ type
     procedure buttonTurmaDeletarClick(Sender: TObject);
     procedure tabMatriculaShow(Sender: TObject);
     procedure buttonMatriculaInserirClick(Sender: TObject);
+    procedure buttonMatriculaEditarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -317,6 +318,24 @@ var
   form: TFormEstudante;
 begin
   form := TFormEstudante.Create(nil, nil);
+  form.ShowModal;
+  form.Free;
+
+  UpdateStringGrid;
+end;
+
+procedure TformMain.buttonMatriculaEditarClick(Sender: TObject);
+var
+  form: TFormMatricula;
+  i: Integer;
+  matricula: TMatricula;
+begin
+  i := gridMatriculas.Row - 1;
+  if i = -1 then raise Exception.Create('Nenhuma matrícula selecionada');
+
+  matricula := ModelMatricula.GetMatriculaByIndex(i);
+
+  form := TFormMatricula.Create(matricula, nil);
   form.ShowModal;
   form.Free;
 

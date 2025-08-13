@@ -367,6 +367,7 @@ object formMain: TformMain
           Align = alLeft
           Caption = 'Editar'
           TabOrder = 2
+          OnClick = buttonMatriculaEditarClick
           ExplicitLeft = 98
         end
         object buttonMatriculaDeletar: TButton
