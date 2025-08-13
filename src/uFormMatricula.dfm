@@ -1,0 +1,124 @@
+object formMatricula: TformMatricula
+  Left = 0
+  Top = 0
+  Caption = 'Matriculas'
+  ClientHeight = 230
+  ClientWidth = 287
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  OnShow = FormShow
+  TextHeight = 15
+  object panelMatricula: TPanel
+    AlignWithMargins = True
+    Left = 0
+    Top = 0
+    Width = 287
+    Height = 230
+    Margins.Left = 0
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    Align = alClient
+    Caption = 'panelMatricula'
+    ShowCaption = False
+    TabOrder = 0
+    ExplicitWidth = 275
+    ExplicitHeight = 234
+    object labelMatriculaEstudante: TLabel
+      AlignWithMargins = True
+      Left = 31
+      Top = 21
+      Width = 225
+      Height = 21
+      Margins.Left = 30
+      Margins.Top = 20
+      Margins.Right = 30
+      Margins.Bottom = 0
+      Align = alTop
+      Caption = 'Estudante:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      ExplicitWidth = 71
+    end
+    object labelMatriculaTurma: TLabel
+      AlignWithMargins = True
+      Left = 31
+      Top = 90
+      Width = 225
+      Height = 21
+      Margins.Left = 30
+      Margins.Top = 20
+      Margins.Right = 30
+      Margins.Bottom = 0
+      Align = alTop
+      Caption = 'Turma:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      ExplicitWidth = 48
+    end
+    object comboMatriculaEstudante: TComboBox
+      AlignWithMargins = True
+      Left = 31
+      Top = 47
+      Width = 225
+      Height = 23
+      Margins.Left = 30
+      Margins.Top = 5
+      Margins.Right = 30
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 0
+      TextHint = 'Estudante'
+      ExplicitWidth = 213
+    end
+    object comboMatriculaTurma: TComboBox
+      AlignWithMargins = True
+      Left = 31
+      Top = 116
+      Width = 225
+      Height = 23
+      Margins.Left = 30
+      Margins.Top = 5
+      Margins.Right = 30
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 1
+      TextHint = 'Turma'
+      ExplicitWidth = 213
+    end
+    object buttonConfirmar: TButton
+      AlignWithMargins = True
+      Left = 31
+      Top = 174
+      Width = 225
+      Height = 33
+      Margins.Left = 30
+      Margins.Top = 35
+      Margins.Right = 30
+      Margins.Bottom = 0
+      Align = alTop
+      Caption = 'Confirmar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+      OnClick = buttonConfirmarClick
+      ExplicitWidth = 213
+    end
+  end
+end
