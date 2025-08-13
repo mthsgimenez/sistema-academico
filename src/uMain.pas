@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, FireDAC.Comp.Client,
   Vcl.ComCtrls, Vcl.ExtCtrls, System.Generics.Collections, uDatabase, uEstudanteModel, uEstudante,
   Vcl.Grids, uFormEstudante, uProfessorModel, uProfessor, uFormProfessor, uDisciplina, uDisciplinaModel, uFormDisciplina,
-  uTurma, uTurmaModel, uFormTurma;
+  uTurma, uTurmaModel, uFormTurma, uMatricula, uMatriculaModel, uFormMatricula;
 
 type
   TformMain = class(TForm)
@@ -33,6 +33,11 @@ type
     buttonTurmaInserir: TButton;
     buttonTurmaEditar: TButton;
     buttonTurmaDeletar: TButton;
+    tabMatricula: TTabSheet;
+    gridMatriculas: TStringGrid;
+    buttonMatriculaInserir: TButton;
+    buttonMatriculaEditar: TButton;
+    buttonMatriculaDeletar: TButton;
     procedure buttonEstudanteInserirClick(Sender: TObject);
     procedure buttonEstudanteDeletarClick(Sender: TObject);
     procedure buttonEstudanteEditarClick(Sender: TObject);
@@ -41,6 +46,7 @@ type
     procedure UpdateGridProfessor;
     procedure UpdateGridDisciplina;
     procedure UpdateGridTurma;
+    procedure UpdateGridMatricula;
     procedure AdjustGridColumns(aGrid: TStringGrid; aColumnHeaders: Array of String);
     procedure tabEstudanteShow(Sender: TObject);
     procedure tabProfessorShow(Sender: TObject);
@@ -58,12 +64,14 @@ type
     procedure buttonTurmaInserirClick(Sender: TObject);
     procedure buttonTurmaEditarClick(Sender: TObject);
     procedure buttonTurmaDeletarClick(Sender: TObject);
+    procedure tabMatriculaShow(Sender: TObject);
+    procedure buttonMatriculaInserirClick(Sender: TObject);
   private
     { Private declarations }
   public
   end;
 
-  TTab = (estudante, professor, disciplina, turma);
+  TTab = (estudante, professor, disciplina, turma, matricula);
 
 var
   formMain: TformMain;
@@ -117,6 +125,31 @@ begin
     gridEstudantes.Row := i;
   end;
 end;
+
+procedure TformMain.UpdateGridMatricula;
+var
+  matriculas: TObjectList<TMatricula>;
+  newRow, i: Integer;
+begin
+  i := gridMatriculas.Row;
+  gridMatriculas.RowCount := 1;
+  matriculas := ModelMatricula.GetMatriculas;
+
+  for var matricula in matriculas do begin
+    newRow := gridMatriculas.RowCount;
+    gridMatriculas.RowCount := newRow + 1;
+    gridMatriculas.Cells[0, newRow] := matricula.GetId.ToString;
+    gridMatriculas.Cells[1, newRow] := matricula.GetEstudante.GetNome;
+    gridMatriculas.Cells[2, newRow] := matricula.GetTurma.GetDisciplina.GetNome + ' - ' + matricula.GetTurma.GetProfessor.GetNome;
+  end;
+
+  if gridMatriculas.RowCount > 1 then gridMatriculas.FixedRows := 1;
+  if gridMatriculas.RowCount > 2 then begin
+    if i > gridMatriculas.RowCount - 1 then i := i - 1;
+    gridMatriculas.Row := i;
+  end;
+end;
+
 
 procedure TformMain.UpdateGridProfessor;
 var
@@ -177,6 +210,7 @@ begin
     professor: UpdateGridProfessor;
     disciplina: UpdateGridDisciplina;
     turma: UpdateGridTurma;
+    matricula: UpdateGridMatricula;
     else raise Exception.Create('UpdateStringGrid: Menu inválido');
   end;
 end;
@@ -283,6 +317,17 @@ var
   form: TFormEstudante;
 begin
   form := TFormEstudante.Create(nil, nil);
+  form.ShowModal;
+  form.Free;
+
+  UpdateStringGrid;
+end;
+
+procedure TformMain.buttonMatriculaInserirClick(Sender: TObject);
+var
+  form: TFormMatricula;
+begin
+  form := TFormMatricula.Create(nil, nil);
   form.ShowModal;
   form.Free;
 
@@ -397,6 +442,7 @@ begin
   uEstudanteModel.ModelEstudante := TEstudanteModel.Create(Database);
   uProfessorModel.ModelProfessor := TProfessorModel.Create(Database);
   uTurmaModel.ModelTurma := TTurmaModel.Create(Database, ModelProfessor, ModelDisciplina);
+  uMatriculaModel.ModelMatricula := TMatriculaModel.Create(Database, ModelEstudante, ModelTurma);
 end;
 
 procedure TformMain.pageMainChange(Sender: TObject);
@@ -414,6 +460,13 @@ end;
 procedure TformMain.tabEstudanteShow(Sender: TObject);
 begin
   AdjustGridColumns(gridEstudantes, ['Código', 'Nome']);
+
+  UpdateStringGrid;
+end;
+
+procedure TformMain.tabMatriculaShow(Sender: TObject);
+begin
+  AdjustGridColumns(gridMatriculas, ['Código', 'Estudante', 'Turma']);
 
   UpdateStringGrid;
 end;

@@ -16,7 +16,9 @@ uses
   uFormDisciplina in 'uFormDisciplina.pas' {formDisciplina},
   uTurma in 'uTurma.pas',
   uTurmaModel in 'uTurmaModel.pas',
-  uFormTurma in 'uFormTurma.pas' {formTurma};
+  uFormTurma in 'uFormTurma.pas' {formTurma},
+  uMatricula in 'uMatricula.pas',
+  uMatriculaModel in 'uMatriculaModel.pas';
 
 {$R *.res}
 

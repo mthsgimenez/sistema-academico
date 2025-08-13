@@ -36,7 +36,7 @@ object formMain: TformMain
       Margins.Top = 0
       Margins.Right = 0
       Margins.Bottom = 0
-      ActivePage = tabTurma
+      ActivePage = tabMatricula
       Align = alClient
       TabOrder = 0
       OnChange = pageMainChange
@@ -104,6 +104,7 @@ object formMain: TformMain
           RowCount = 2
           ScrollBars = ssVertical
           TabOrder = 3
+          ExplicitTop = 387
         end
       end
       object tabProfessor: TTabSheet
@@ -310,6 +311,78 @@ object formMain: TformMain
           Caption = 'Deletar'
           TabOrder = 3
           OnClick = buttonTurmaDeletarClick
+        end
+      end
+      object tabMatricula: TTabSheet
+        Caption = 'Matricula'
+        ImageIndex = 4
+        OnShow = tabMatriculaShow
+        object gridMatriculas: TStringGrid
+          AlignWithMargins = True
+          Left = 5
+          Top = 5
+          Width = 604
+          Height = 372
+          Margins.Left = 5
+          Margins.Top = 5
+          Margins.Right = 5
+          Margins.Bottom = 5
+          Align = alTop
+          ColCount = 3
+          FixedCols = 2
+          RowCount = 2
+          TabOrder = 0
+          ExplicitLeft = 10
+          ExplicitTop = 13
+          RowHeights = (
+            24
+            24)
+        end
+        object buttonMatriculaInserir: TButton
+          AlignWithMargins = True
+          Left = 5
+          Top = 382
+          Width = 75
+          Height = 27
+          Margins.Left = 5
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          Align = alLeft
+          Caption = 'Inserir'
+          TabOrder = 1
+          OnClick = buttonMatriculaInserirClick
+          ExplicitLeft = 13
+        end
+        object buttonMatriculaEditar: TButton
+          AlignWithMargins = True
+          Left = 90
+          Top = 382
+          Width = 75
+          Height = 27
+          Margins.Left = 10
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          Align = alLeft
+          Caption = 'Editar'
+          TabOrder = 2
+          ExplicitLeft = 98
+        end
+        object buttonMatriculaDeletar: TButton
+          AlignWithMargins = True
+          Left = 534
+          Top = 382
+          Width = 75
+          Height = 27
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 5
+          Margins.Bottom = 0
+          Align = alRight
+          Caption = 'Deletar'
+          TabOrder = 3
+          ExplicitLeft = 539
         end
       end
     end

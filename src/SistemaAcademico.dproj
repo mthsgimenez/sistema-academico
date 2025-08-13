@@ -159,6 +159,8 @@
             <Form>formTurma</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="uMatricula.pas"/>
+        <DCCReference Include="uMatriculaModel.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
