@@ -67,6 +67,7 @@ type
     procedure tabMatriculaShow(Sender: TObject);
     procedure buttonMatriculaInserirClick(Sender: TObject);
     procedure buttonMatriculaEditarClick(Sender: TObject);
+    procedure buttonMatriculaDeletarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -323,6 +324,25 @@ begin
 
   UpdateStringGrid;
 end;
+
+procedure TformMain.buttonMatriculaDeletarClick(Sender: TObject);
+var
+  i, choice: Integer;
+  matricula: TMatricula;
+begin
+  i := gridMatriculas.Row - 1;
+  if i = -1 then raise Exception.Create('Nenhuma matrícula selecionada');
+
+  matricula := modelMatricula.GetMatriculaByIndex(i);
+
+  choice := MessageDlg('Deseja mesmo deletar a matrícula do estudante: ' + matricula.GetEstudante.GetNome + '?', TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0);
+
+  if choice = mrNo then exit;
+
+  modelMatricula.Delete(matricula);
+  UpdateStringGrid;
+end;
+
 
 procedure TformMain.buttonMatriculaEditarClick(Sender: TObject);
 var
