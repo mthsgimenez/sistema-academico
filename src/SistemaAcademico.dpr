@@ -18,7 +18,8 @@ uses
   uTurmaModel in 'uTurmaModel.pas',
   uFormTurma in 'uFormTurma.pas' {formTurma},
   uMatricula in 'uMatricula.pas',
-  uMatriculaModel in 'uMatriculaModel.pas';
+  uMatriculaModel in 'uMatriculaModel.pas',
+  uFormMatricula in 'uFormMatricula.pas' {formMatricula};
 
 {$R *.res}
 
@@ -31,5 +32,6 @@ begin
   Application.CreateForm(TformProfessor, formProfessor);
   Application.CreateForm(TformDisciplina, formDisciplina);
   Application.CreateForm(TformTurma, formTurma);
+  Application.CreateForm(TformMatricula, formMatricula);
   Application.Run;
 end.

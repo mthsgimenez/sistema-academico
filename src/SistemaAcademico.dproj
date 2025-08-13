@@ -161,6 +161,10 @@
         </DCCReference>
         <DCCReference Include="uMatricula.pas"/>
         <DCCReference Include="uMatriculaModel.pas"/>
+        <DCCReference Include="uFormMatricula.pas">
+            <Form>formMatricula</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
