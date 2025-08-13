@@ -49,6 +49,7 @@ object formMain: TformMain
           Top = 382
           Width = 75
           Height = 27
+          Cursor = crHandPoint
           Margins.Left = 5
           Margins.Top = 0
           Margins.Right = 0
@@ -64,6 +65,7 @@ object formMain: TformMain
           Top = 382
           Width = 75
           Height = 27
+          Cursor = crHandPoint
           Margins.Left = 0
           Margins.Top = 0
           Margins.Right = 5
@@ -79,6 +81,7 @@ object formMain: TformMain
           Top = 382
           Width = 75
           Height = 27
+          Cursor = crHandPoint
           Margins.Left = 10
           Margins.Top = 0
           Margins.Right = 0
@@ -135,6 +138,7 @@ object formMain: TformMain
           Top = 382
           Width = 75
           Height = 27
+          Cursor = crHandPoint
           Margins.Left = 5
           Margins.Top = 0
           Margins.Right = 0
@@ -150,6 +154,7 @@ object formMain: TformMain
           Top = 382
           Width = 75
           Height = 27
+          Cursor = crHandPoint
           Margins.Left = 10
           Margins.Top = 0
           Margins.Right = 0
@@ -165,6 +170,7 @@ object formMain: TformMain
           Top = 382
           Width = 75
           Height = 27
+          Cursor = crHandPoint
           Margins.Left = 0
           Margins.Top = 0
           Margins.Right = 5
@@ -203,6 +209,7 @@ object formMain: TformMain
           Top = 382
           Width = 75
           Height = 27
+          Cursor = crHandPoint
           Margins.Left = 10
           Margins.Top = 0
           Margins.Right = 0
@@ -218,6 +225,7 @@ object formMain: TformMain
           Top = 382
           Width = 75
           Height = 27
+          Cursor = crHandPoint
           Margins.Left = 5
           Margins.Top = 0
           Margins.Right = 0
@@ -233,6 +241,7 @@ object formMain: TformMain
           Top = 382
           Width = 75
           Height = 27
+          Cursor = crHandPoint
           Margins.Left = 0
           Margins.Top = 0
           Margins.Right = 5
@@ -272,6 +281,7 @@ object formMain: TformMain
           Top = 382
           Width = 75
           Height = 27
+          Cursor = crHandPoint
           Margins.Left = 5
           Margins.Top = 0
           Margins.Right = 0
@@ -287,6 +297,7 @@ object formMain: TformMain
           Top = 382
           Width = 75
           Height = 27
+          Cursor = crHandPoint
           Margins.Left = 10
           Margins.Top = 0
           Margins.Right = 0
@@ -302,6 +313,7 @@ object formMain: TformMain
           Top = 382
           Width = 75
           Height = 27
+          Cursor = crHandPoint
           Margins.Left = 0
           Margins.Top = 0
           Margins.Right = 5
@@ -341,6 +353,7 @@ object formMain: TformMain
           Top = 382
           Width = 75
           Height = 27
+          Cursor = crHandPoint
           Margins.Left = 5
           Margins.Top = 0
           Margins.Right = 0
@@ -356,6 +369,7 @@ object formMain: TformMain
           Top = 382
           Width = 75
           Height = 27
+          Cursor = crHandPoint
           Margins.Left = 10
           Margins.Top = 0
           Margins.Right = 0
@@ -371,6 +385,7 @@ object formMain: TformMain
           Top = 382
           Width = 75
           Height = 27
+          Cursor = crHandPoint
           Margins.Left = 0
           Margins.Top = 0
           Margins.Right = 5
