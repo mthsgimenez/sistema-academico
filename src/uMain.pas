@@ -89,9 +89,10 @@ begin
   end;
 
   if gridDisciplinas.RowCount > 1 then gridDisciplinas.FixedRows := 1;
-  if i > gridDisciplinas.RowCount - 1 then i := i - 1;
-
-  gridDisciplinas.Row := i;
+  if gridDisciplinas.RowCount > 2 then begin
+    if i > gridDisciplinas.RowCount - 1 then i := i - 1;
+    gridDisciplinas.Row := i;
+  end;
 end;
 
 procedure TformMain.UpdateGridEstudante;
@@ -111,9 +112,10 @@ begin
   end;
 
   if gridEstudantes.RowCount > 1 then gridEstudantes.FixedRows := 1;
-  if i > gridEstudantes.RowCount - 1 then i := i - 1;
-
-  gridEstudantes.Row := i;
+  if gridEstudantes.RowCount > 2 then begin
+    if i > gridEstudantes.RowCount - 1 then i := i - 1;
+    gridEstudantes.Row := i;
+  end;
 end;
 
 procedure TformMain.UpdateGridProfessor;
@@ -134,9 +136,10 @@ begin
   end;
 
   if gridProfessores.RowCount > 1 then gridProfessores.FixedRows := 1;
-  if i > gridProfessores.RowCount - 1 then i := i - 1;
-
-  gridProfessores.Row := i;
+  if gridProfessores.RowCount > 2 then begin
+    if i > gridProfessores.RowCount - 1 then i := i - 1;
+    gridProfessores.Row := i;
+  end;
 end;
 
 procedure TformMain.UpdateGridTurma;
@@ -157,9 +160,10 @@ begin
   end;
 
   if gridTurmas.RowCount > 1 then gridTurmas.FixedRows := 1;
-  if i > gridTurmas.RowCount - 1 then i := i - 1;
-
-  gridTurmas.Row := i;
+  if gridTurmas.RowCount > 2 then begin
+    if i > gridTurmas.RowCount - 1 then i := i - 1;
+    gridTurmas.Row := i;
+  end;
 end;
 
 procedure TformMain.UpdateStringGrid;
